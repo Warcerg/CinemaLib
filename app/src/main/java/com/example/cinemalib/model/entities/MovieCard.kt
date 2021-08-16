@@ -12,7 +12,7 @@ fun getDefaultMovieList() = listOf(
     MovieCard(Movie("Jurassic Park", "1993", "Steven Spielberg"), 8, 0),
     MovieCard(Movie("Pulp Fiction", "1994", "Quentin Tarantino"), 9, 0),
     MovieCard(Movie("Goodfellas", "1990", "Martin Scorsese"), 9, 0),
-    MovieCard(Movie("Fight CLub", "1999", "David Fincher"), 9, 0),
+    MovieCard(Movie("Fight Club", "1999", "David Fincher"), 9, 0),
     MovieCard(Movie("The Big Lebowski", "1998", "Joel & Ethan Coen"), 8, 0),
     MovieCard(Movie("Fargo", "1996", "Joel & Ethan Coen"), 8, 0),
     MovieCard(Movie("Magnolia", "1999", "Paul Thomas Anderson"), 8, 0),

@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CardView"
-    android:layout_width="125dp"
-    android:layout_height="250dp"
+    android:layout_width="@dimen/movie_card_layout_width"
+    android:layout_height="@dimen/movie_card_layout_height"
     android:orientation="vertical"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp">
+    android:layout_marginStart="@dimen/movie_card_layout_margin"
+    android:layout_marginEnd="@dimen/movie_card_layout_margin"
+    android:layout_marginTop="@dimen/movie_card_layout_margin"
+    android:layout_marginBottom="@dimen/movie_card_layout_margin">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,32 +20,32 @@
         <TextView
             android:id="@+id/movieTitleText"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Title"
+            android:layout_height="@dimen/movie_card_title_height"
+            android:text="@string/movie_card_title"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="@dimen/movie_card_title_text_size"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/movieDirectorText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Director"
-            android:textSize="12sp"
+            android:text="@string/movie_card_director_text"
+            android:textSize="@dimen/movie_card_director_text_size"
             android:textStyle="italic" />
 
         <ImageView
             android:id="@+id/moviePic"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="@dimen/movie_card_image_height"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/movieReleaseDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ReleaseDate"
-            android:textSize="12sp"/>
+            android:text="@string/movie_card_release_date_text"
+            android:textSize="@dimen/movie_card_release_date_text_size"/>
 
 
         <LinearLayout
@@ -59,18 +59,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Rating"
+                android:text="@string/movie_card_rating_text"
                 android:textAlignment="textEnd"
-                android:textSize="15sp" />
+                android:textSize="@dimen/movie_card_rating_text_size" />
 
             <TextView
                 android:id="@+id/movieRatingNumberText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="X"
+                android:text="@string/movie_card_rating_number"
                 android:textAlignment="center"
-                android:textSize="15sp" />
+                android:textSize="@dimen/movie_card_rating_number_size" />
 
 
         </LinearLayout>

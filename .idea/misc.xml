@@ -4,9 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/CinemaLib/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
-        <entry key="..\:/Android/CinemaLib/app/src/main/res/layout/main_fragment.xml" value="0.4" />
+        <entry key="..\:/Android/CinemaLib/app/src/main/res/drawable/toolbar.xml" value="0.2703125" />
+        <entry key="..\:/Android/CinemaLib/app/src/main/res/layout/app_bar_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android/CinemaLib/app/src/main/res/layout/main_activity.xml" value="0.21145833333333333" />
+        <entry key="..\:/Android/CinemaLib/app/src/main/res/layout/main_fragment.xml" value="0.1" />
         <entry key="..\:/Android/CinemaLib/app/src/main/res/layout/movie_card.xml" value="0.4" />
-        <entry key="..\:/Android/CinemaLib/app/src/main/res/layout/movie_list_recycler_fragment.xml" value="0.264" />
+        <entry key="..\:/Android/CinemaLib/app/src/main/res/layout/movie_list_recycler_fragment.xml" value="0.1" />
+        <entry key="..\:/Android/CinemaLib/app/src/main/res/layout/top_menu.xml" value="0.12604166666666666" />
+        <entry key="..\:/Android/CinemaLib/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Android/CinemaLib/app/src/main/res/menu/top_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

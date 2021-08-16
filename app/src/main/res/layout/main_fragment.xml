@@ -8,53 +8,52 @@
     android:orientation="vertical"
     tools:context=".framework.ui.main.MainFragment">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_fragment_heading_margin"
+            android:layout_marginTop="@dimen/main_fragment_heading_margin"
+            android:text="@string/main_fragment_heading1"
+            android:textSize="@dimen/main_fragment_heading_text_size"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="New Releases"
-        android:textStyle="bold"
-        android:textSize="18sp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_movies"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_fragment_recycler_view_movie_list_height"
+            android:layout_marginStart="@dimen/main_fragment_recycler_view_movie_list_margin"
+            android:layout_marginTop="@dimen/main_fragment_recycler_view_movie_list_margin"
+            android:layout_marginEnd="@dimen/main_fragment_recycler_view_movie_list_margin"
+            android:layout_marginBottom="@dimen/main_fragment_recycler_view_movie_list_margin"
+            android:orientation="horizontal"
+            tools:listitem="@layout/movie_list_recycler_fragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_movies"
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        tools:listitem="@layout/movie_list_recycler_fragment"
-        >
+        </androidx.recyclerview.widget.RecyclerView>
 
-    </androidx.recyclerview.widget.RecyclerView>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Top Movies"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_fragment_heading_margin"
+            android:layout_marginTop="@dimen/main_fragment_heading_margin"
+            android:text="@string/main_fragment_heading2"
+            android:textSize="@dimen/main_fragment_heading_text_size"
+            android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_movies2"
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        tools:listitem="@layout/movie_list_recycler_fragment">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_movies2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_fragment_recycler_view_movie_list_height"
+            android:layout_marginStart="@dimen/main_fragment_recycler_view_movie_list_margin"
+            android:layout_marginTop="@dimen/main_fragment_recycler_view_movie_list_margin"
+            android:layout_marginEnd="@dimen/main_fragment_recycler_view_movie_list_margin"
+            android:layout_marginBottom="@dimen/main_fragment_recycler_view_movie_list_margin"
+            android:orientation="horizontal"
+            tools:listitem="@layout/movie_list_recycler_fragment">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
+
 
 </LinearLayout>

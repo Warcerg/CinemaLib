@@ -4,15 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MovieListRecyclerFragmentBinding
 import com.example.cinemalib.framework.ui.main.MainFragment
 import com.example.cinemalib.model.entities.MovieCard
 
-class MovieListAdapter(private var itemClickListener: MainFragment.onItemClickListener) :
+class MovieListAdapter(private var itemClickListener: MainFragment.OnItemClickListener) :
     RecyclerView.Adapter<MovieListAdapter.MainViewHolder>(){
     private var movieCardData: List<MovieCard> = listOf()
     private lateinit var binding: MovieListRecyclerFragmentBinding
