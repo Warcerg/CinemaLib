@@ -22,13 +22,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_movies"
         android:layout_width="match_parent"
-        android:layout_height="225dp"
+        android:layout_height="260dp"
         android:orientation="horizontal"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        tools:listitem="@layout/movie_card"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        tools:listitem="@layout/movie_list_recycler_fragment"
         >
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -47,13 +47,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_movies2"
         android:layout_width="match_parent"
-        android:layout_height="225dp"
+        android:layout_height="260dp"
         android:orientation="horizontal"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        tools:listitem="@layout/movie_card">
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        tools:listitem="@layout/movie_list_recycler_fragment">
 
     </androidx.recyclerview.widget.RecyclerView>
 

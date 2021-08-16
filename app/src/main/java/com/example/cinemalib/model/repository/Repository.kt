@@ -4,4 +4,5 @@ import com.example.cinemalib.model.entities.MovieCard
 
 interface Repository {
     fun getMovieDatafromServer(): MovieCard
+    fun getMovieFromLocalStorage() : List<MovieCard>
 }

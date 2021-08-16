@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CardView"
     android:layout_width="125dp"
-    android:layout_height="230dp"
+    android:layout_height="250dp"
     android:orientation="vertical"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
@@ -20,14 +20,14 @@
         <TextView
             android:id="@+id/movieTitleText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="Title"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/MovieDirectorText"
+            android:id="@+id/movieDirectorText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Director"
@@ -35,13 +35,13 @@
             android:textStyle="italic" />
 
         <ImageView
-            android:id="@+id/MoviePic"
+            android:id="@+id/moviePic"
             android:layout_width="match_parent"
             android:layout_height="140dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/MovieReleaseDateText"
+            android:id="@+id/movieReleaseDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ReleaseDate"
@@ -55,7 +55,7 @@
 
 
             <TextView
-                android:id="@+id/MovieRatingHeadText"
+                android:id="@+id/movieRatingHeadText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -64,7 +64,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/MovieRatingNumberText"
+                android:id="@+id/movieRatingNumberText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
