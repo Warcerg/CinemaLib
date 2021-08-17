@@ -8,6 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MainFragmentBinding
+import com.example.cinemalib.framework.ui.MovieDetailsFragment
 import com.example.cinemalib.framework.ui.adapters.MovieListAdapter
 import com.example.cinemalib.model.AppState
 import com.example.cinemalib.model.entities.MovieCard
@@ -20,9 +21,8 @@ class MainFragment : Fragment() {
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var adapter1: MovieListAdapter? = null
-    private var adapter2: MovieListAdapter? = null
-
+    private var adapterNewReleasesList: MovieListAdapter? = null
+    private var adapterTopMoviesList: MovieListAdapter? = null
 
 
     override fun onCreateView(
@@ -37,10 +37,12 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            recyclerViewMovies.adapter = adapter1
-            recyclerViewMovies.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
-            recyclerViewMovies2.adapter = adapter2
-            recyclerViewMovies2.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+            recyclerViewMovies.adapter = adapterNewReleasesList
+            recyclerViewMovies.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            recyclerViewMovies2.adapter = adapterTopMoviesList
+            recyclerViewMovies2.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
             viewModel.getMovieData()
         }
@@ -54,25 +56,43 @@ class MainFragment : Fragment() {
     private fun renderData(appState: AppState) = with(binding) {
         when (appState) {
             is AppState.Success -> {
-                adapter1 = MovieListAdapter(object :  OnItemClickListener {
+                adapterNewReleasesList = MovieListAdapter(object : OnItemClickListener {
                     override fun onItemViewClick(movieCard: MovieCard) {
-                        Toast.makeText(context, R.string.movie_details_frag, Toast.LENGTH_SHORT ).show()
+                        val managerFR = activity?.supportFragmentManager
+                        managerFR?.let { manager ->
+                            val bundle = Bundle().apply {
+                                putParcelable(MovieDetailsFragment.BUNDLE_EXTRA, movieCard)
+                            }
+                            manager.beginTransaction()
+                                .add(R.id.container, MovieDetailsFragment.newInstance(bundle))
+                                .addToBackStack("")
+                                .commitAllowingStateLoss()
+                        }
                     }
                 }
                 ).apply {
                     setMovieCard(appState.movieData)
                 }
-                recyclerViewMovies.adapter = adapter1
+                recyclerViewMovies.adapter = adapterNewReleasesList
 
-                adapter2 = MovieListAdapter(object :  OnItemClickListener {
+                adapterTopMoviesList = MovieListAdapter(object : OnItemClickListener {
                     override fun onItemViewClick(movieCard: MovieCard) {
-                        Toast.makeText(context, R.string.movie_details_frag, Toast.LENGTH_SHORT ).show()
+                        val managerFR = activity?.supportFragmentManager
+                        managerFR?.let { manager ->
+                            val bundle = Bundle().apply {
+                                putParcelable(MovieDetailsFragment.BUNDLE_EXTRA, movieCard)
+                            }
+                            manager.beginTransaction()
+                                .add(R.id.container, MovieDetailsFragment.newInstance(bundle))
+                                .addToBackStack("")
+                                .commitAllowingStateLoss()
+                        }
                     }
                 }
                 ).apply {
                     setMovieCard(appState.movieData.filter { it.rating >= 9 })
                 }
-                recyclerViewMovies2.adapter = adapter2
+                recyclerViewMovies2.adapter = adapterTopMoviesList
             }
             is AppState.Error -> {
                 Snackbar
@@ -92,6 +112,7 @@ class MainFragment : Fragment() {
                 Toast.makeText(activity, query, Toast.LENGTH_SHORT).show()
                 return true
             }
+
             override fun onQueryTextChange(newText: String): Boolean {
                 return true
             }
@@ -99,16 +120,16 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-       when(item.itemId) {
-           R.id.action_settings -> {
-               Toast.makeText(context, R.string.settings_frag, Toast.LENGTH_LONG).show()
-               return true
-           }
-           R.id.action_about -> {
-               Toast.makeText(context, R.string.about_app_frag, Toast.LENGTH_LONG).show()
-               return true
-           }
-       }
+        when (item.itemId) {
+            R.id.action_settings -> {
+                Toast.makeText(context, R.string.settings_frag, Toast.LENGTH_LONG).show()
+                return true
+            }
+            R.id.action_about -> {
+                Toast.makeText(context, R.string.about_app_frag, Toast.LENGTH_LONG).show()
+                return true
+            }
+        }
         return false
     }
 
