@@ -66,6 +66,7 @@ class MainFragment : Fragment() {
                             manager.beginTransaction()
                                 .add(R.id.container, MovieDetailsFragment.newInstance(bundle))
                                 .addToBackStack("")
+                                .remove(this@MainFragment)
                                 .commitAllowingStateLoss()
                         }
                     }
@@ -85,6 +86,7 @@ class MainFragment : Fragment() {
                             manager.beginTransaction()
                                 .add(R.id.container, MovieDetailsFragment.newInstance(bundle))
                                 .addToBackStack("")
+                                .remove(this@MainFragment)
                                 .commitAllowingStateLoss()
                         }
                     }
