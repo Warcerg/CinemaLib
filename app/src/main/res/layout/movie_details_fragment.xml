@@ -6,26 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/movieDetailsMovieTriviaHeader"
-        android:layout_width="@dimen/movie_details_main_text_width"
-        android:layout_height="wrap_content"
-        android:text="@string/movieDetails_trivia"
-        android:textSize="@dimen/movie_details_small_headings_text_size"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieSynopsisText"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieSynopsisText"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieSynopsisText" />
 
-    <TextView
-        android:id="@+id/movieDetailsMovieTriviaText"
-        android:layout_width="@dimen/movie_details_main_text_width"
-        android:layout_height="wrap_content"
-        android:text="@string/movieDetails_triviatext"
-        app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieTriviaHeader"
-        app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieTriviaHeader"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieTriviaHeader" />
+
 
     <TextView
         android:id="@+id/movieDetailsReleaseYear"
@@ -58,18 +40,7 @@
         app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieReleaseDate"
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieReleaseDate" />
 
-    <TextView
-        android:id="@+id/movieDetailsMovieSynopsisHeader"
-        android:layout_width="@dimen/movie_details_main_text_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/movie_details_mainpart_margin_top"
-        android:text="@string/movieDetails_synopsis"
-        android:textSize="@dimen/movie_details_small_headings_text_size"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
-        app:layout_constraintStart_toEndOf="@id/movieDetailsPosterImage"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieRating" />
+
 
     <TextView
         android:id="@+id/movieDetailsMovieGenre"
@@ -103,15 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/movieDetailsMovieSynopsisText"
-        android:layout_width="@dimen/movie_details_main_text_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/movie_details_small_info_top_margin"
-        android:text="@string/movieDetails_synopsis_text"
-        app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieSynopsisHeader"
-        app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieSynopsisHeader"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieSynopsisHeader" />
+
 
     <TextView
         android:id="@+id/movieDetailsMovieDirector"
@@ -135,6 +98,66 @@
         app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieBudget"
         app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieBudget"
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieBudget" />
+
+    <ScrollView
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/movie_details_mainpart_margin_top"
+        app:layout_constraintStart_toEndOf="@id/movieDetailsPosterImage"
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieRating"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/movieDetailsMovieSynopsisHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/movie_details_mainpart_margin_top"
+                android:text="@string/movieDetails_synopsis"
+                android:textSize="@dimen/movie_details_small_headings_text_size"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/movieDetailsPosterImage"
+                app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieRating" />
+
+            <TextView
+                android:id="@+id/movieDetailsMovieSynopsisText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/movie_details_small_info_top_margin"
+                android:text="@string/movieDetails_synopsis_text"
+                app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieSynopsisHeader"
+                app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieSynopsisHeader"
+                app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieSynopsisHeader" />
+
+            <TextView
+                android:id="@+id/movieDetailsMovieTriviaHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/movieDetails_trivia"
+                android:textSize="@dimen/movie_details_small_headings_text_size"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieSynopsisText"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieSynopsisText"
+                app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieSynopsisText" />
+
+            <TextView
+                android:id="@+id/movieDetailsMovieTriviaText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/movieDetails_triviatext"
+                app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieTriviaHeader"
+                app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieTriviaHeader"
+                app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieTriviaHeader" />
+        </LinearLayout>
+
+
+    </ScrollView>
 
     <ImageView
         android:id="@+id/movieDetailsPosterImage"
