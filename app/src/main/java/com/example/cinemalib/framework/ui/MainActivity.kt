@@ -1,8 +1,9 @@
-package com.example.cinemalib
+package com.example.cinemalib.framework.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.cinemalib.ui.main.MainFragment
+import com.example.cinemalib.R
+import com.example.cinemalib.framework.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
