@@ -1,9 +1,11 @@
 package com.example.cinemalib
 
+
 import android.view.View
-import android.widget.TextView
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 fun View.snackbarShow(resourceId : Int) {
@@ -15,6 +17,8 @@ fun ViewBinding.snackbarShow(resourceId : Int) {
     val snackbar =  Snackbar.make(root, root.resources.getString(resourceId), Snackbar.LENGTH_LONG)
     snackbar.show()
 }
+
+fun Date.formatToString(): String = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(this)
 
 
 

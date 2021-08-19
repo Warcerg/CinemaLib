@@ -44,7 +44,7 @@ class MainFragment : Fragment() {
             recyclerViewMovies2.adapter = adapterTopMoviesList
             recyclerViewMovies2.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it,view) })
+            viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
             viewModel.getMovieData()
         }
     /*    view.snackbarShow(R.string.app_name)*/
@@ -55,7 +55,7 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-    private fun renderData(appState: AppState, view: View) = with(binding) {
+    private fun renderData(appState: AppState) = with(binding) {
         when (appState) {
             is AppState.Success -> {
                 binding.snackbarShow(R.string.welcome_message)

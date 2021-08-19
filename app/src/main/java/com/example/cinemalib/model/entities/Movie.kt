@@ -2,6 +2,7 @@ package com.example.cinemalib.model.entities
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.text.SimpleDateFormat
 import java.util.*
 
 @Parcelize
@@ -9,7 +10,8 @@ data class Movie (
     val title: String,
     val year: String,
     val director: String,
-    val releaseDate: String = "01.10.$year",
+/*    val releaseDate: String = "01.10.$year",*/
+    val releaseDate: Date = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).parse("01.10.$year")!!,
     val synopsis: String = "The plot of the movie $title consist of drama, comedy and suspense." +
             " The year is $year and our heroes found themselves in danger...from outer space." +
             " \n Some other random text about movie plot. " +

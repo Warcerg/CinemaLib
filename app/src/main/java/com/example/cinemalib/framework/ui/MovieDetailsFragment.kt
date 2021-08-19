@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MovieDetailsFragmentBinding
 import com.example.cinemalib.model.entities.MovieCard
+import com.example.cinemalib.formatToString
+
 
 class MovieDetailsFragment: Fragment() {
     private var _binding: MovieDetailsFragmentBinding? = null
@@ -34,7 +36,7 @@ class MovieDetailsFragment: Fragment() {
                 movieDetailsReleaseYear.text = it.movie.year
                 movieDetailsMovieBudget.text = getString(R.string.movieDetails_budget).plus(" \n").plus(it.movie.budget)
                 movieDetailsMovieGenre.text = getString(R.string.movieDetails_genre).plus(" \n").plus(it.genre)
-                movieDetailsMovieReleaseDate.text = getString(R.string.movieDetails_release_date).plus(" \n").plus(it.movie.releaseDate)
+                movieDetailsMovieReleaseDate.text = getString(R.string.movieDetails_release_date).plus(" \n").plus((it.movie.releaseDate.formatToString()))
                 movieDetailsMovieSynopsisText.text = it.movie.synopsis
                 movieDetailsMovieGrossWorldwide.text = getString(R.string.movieDetails_gross_worldwide).plus(" \n").plus(it.gross)
                 movieDetailsMovieTriviaText.text = it.trivia
