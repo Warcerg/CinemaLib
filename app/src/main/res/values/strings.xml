@@ -18,4 +18,16 @@
     <string name="movie_details_frag">Movie Details Fragment</string>
     <string name="settings_frag">Settings Fragment</string>
     <string name="about_app_frag">About App Fragment</string>
+    <string name="moviedetails_movietitle">MovieTitle</string>
+    <string name="movieDetails_moviereleaseyear">MovieReleaseYear</string>
+    <string name="movieDetails_moviedirector">MovieDirector</string>
+    <string name="movieDetails_rating">Rating</string>
+    <string name="movieDetails_release_date">Release date: </string>
+    <string name="movieDetails_trivia">Trivia</string>
+    <string name="movieDetails_triviatext">TriviaText</string>
+    <string name="movieDetails_budget">Budget: </string>
+    <string name="movieDetails_synopsis">Synopsis</string>
+    <string name="movieDetails_genre">Genre: </string>
+    <string name="movieDetails_synopsis_text">Synopsis text</string>
+    <string name="movieDetails_gross_worldwide">Gross worldwide: </string>
 </resources>

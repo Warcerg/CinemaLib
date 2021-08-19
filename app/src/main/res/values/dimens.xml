@@ -14,4 +14,16 @@
     <dimen name="main_fragment_recycler_view_movie_list_height">260dp</dimen>
     <dimen name="main_fragment_recycler_view_movie_list_margin">4dp</dimen>
     <dimen name="main_fragment_heading_margin">8dp</dimen>
+    <dimen name="movie_details_small_info_section_layout_width">170dp</dimen>
+    <dimen name="movie_details_small_info_top_margin">4dp</dimen>
+    <dimen name="movie_details_poster_width">170dp</dimen>
+    <dimen name="movie_details_poster_height">250dp</dimen>
+    <dimen name="movie_details_title_text_size">25sp</dimen>
+    <dimen name="movie_details_title_width">310dp</dimen>
+    <dimen name="movie_details_main_text_width">175dp</dimen>
+    <dimen name="movie_details_director_text_size">18sp</dimen>
+    <dimen name="movie_details_mainpart_margin_top">12dp</dimen>
+    <dimen name="movie_details_poster_margin_start">16dp</dimen>
+    <dimen name="movie_details_title_top_margin">32dp</dimen>
+    <dimen name="movie_details_small_headings_text_size">16sp</dimen>
 </resources>
