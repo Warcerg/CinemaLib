@@ -15,5 +15,5 @@ data class MovieCard(
             "He made money to fund the movie by selling lemonade to his neighbours in the summer starting when he was 11." +
             "\n Despite the niche theme, the movie became a worldwide phenomenon and grossed $gross.",
     val genre: String = "Drama, Thriller, Comedy, Sci-fi"
-): Parcelable
+) : Parcelable
 
