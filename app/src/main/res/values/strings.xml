@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">CinemaLib</string>
+    <string name="welcome_message">Welcome to the CinemaLib home screen!</string>
     <string name="error">Error!</string>
     <string name="reload">Reload</string>
     <string name="top_menu_settings">Settings</string>

@@ -3,7 +3,6 @@ package com.example.cinemalib.framework.ui.main
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemalib.R
@@ -12,6 +11,7 @@ import com.example.cinemalib.framework.ui.MovieDetailsFragment
 import com.example.cinemalib.framework.ui.adapters.MovieListAdapter
 import com.example.cinemalib.model.AppState
 import com.example.cinemalib.model.entities.MovieCard
+import com.example.cinemalib.snackbarShow
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -46,6 +46,7 @@ class MainFragment : Fragment() {
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
             viewModel.getMovieData()
         }
+        /*    view.snackbarShow(R.string.app_name)*/
     }
 
     override fun onDestroyView() {
@@ -56,6 +57,7 @@ class MainFragment : Fragment() {
     private fun renderData(appState: AppState) = with(binding) {
         when (appState) {
             is AppState.Success -> {
+                binding.snackbarShow(R.string.welcome_message)
                 adapterNewReleasesList = MovieListAdapter(object : OnItemClickListener {
                     override fun onItemViewClick(movieCard: MovieCard) {
                         val managerFR = activity?.supportFragmentManager
@@ -111,7 +113,7 @@ class MainFragment : Fragment() {
         val searchText = search.actionView as SearchView
         searchText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                Toast.makeText(activity, query, Toast.LENGTH_SHORT).show()
+                binding.snackbarShow(query)
                 return true
             }
 
@@ -119,20 +121,22 @@ class MainFragment : Fragment() {
                 return true
             }
         })
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> {
-                Toast.makeText(context, R.string.settings_frag, Toast.LENGTH_LONG).show()
+                binding.snackbarShow(R.string.settings_frag)
                 return true
             }
             R.id.action_about -> {
-                Toast.makeText(context, R.string.about_app_frag, Toast.LENGTH_LONG).show()
+                binding.snackbarShow(R.string.about_app_frag)
                 return true
             }
         }
         return false
+
     }
 
     companion object {
