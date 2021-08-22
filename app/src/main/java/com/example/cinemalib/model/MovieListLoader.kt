@@ -36,14 +36,14 @@ object MovieListLoader {
             } finally {
                 urlConnection.disconnect()
             }
-        } catch (e : MalformedURLException) {
+        } catch (e: MalformedURLException) {
             e.printStackTrace()
         }
 
         return null
     }
 
-    private fun getLinesForOld(reader: BufferedReader) : String {
+    private fun getLinesForOld(reader: BufferedReader): String {
         val rawData = StringBuilder(1024)
         var tempVariable: String?
 
@@ -52,7 +52,7 @@ object MovieListLoader {
         }
 
         reader.close()
-        return  rawData.toString()
+        return rawData.toString()
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

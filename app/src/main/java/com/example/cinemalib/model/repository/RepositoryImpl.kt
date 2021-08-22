@@ -11,7 +11,7 @@ class RepositoryImpl : Repository {
         val dto = MovieListLoader.loadMovieList(queryMovieList)
         val movList = mutableListOf<Movie>()
         if (dto?.results != null) {
-            for (result in dto?.results) {
+            for (result in dto.results) {
                 movList.add(
                     Movie(
                         title = result.title ?: "",
@@ -33,7 +33,7 @@ class RepositoryImpl : Repository {
             budget = dto?.budget ?: 0,
             plot_overview = dto?.overview ?: "",
             rating = dto?.vote_average ?: 0.0,
-            release_date = dto?.release_date ?: "",
+            release_date = dto?.release_date ?: "0000",
             revenue = dto?.revenue ?: 0,
             runtime = dto?.runtime ?: 0,
             status = dto?.status ?: ""

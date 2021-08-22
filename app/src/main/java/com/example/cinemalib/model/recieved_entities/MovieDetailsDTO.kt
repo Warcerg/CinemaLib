@@ -1,8 +1,7 @@
 package com.example.cinemalib.model.recieved_entities
 
-import android.icu.text.CaseMap
 
-class MovieDetailsDTO (
+class MovieDetailsDTO(
     val id: Int?,
     val title: String?,
     val budget: Int?,

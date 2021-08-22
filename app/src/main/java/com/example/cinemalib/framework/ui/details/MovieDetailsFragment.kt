@@ -32,7 +32,7 @@ class MovieDetailsFragment : Fragment() {
         val movie = arguments?.getParcelable<Movie>(BUNDLE_EXTRA)
         movie?.let {
             with(binding) {
-                viewModel.LoadData(it.id)
+                viewModel.loadData(it.id)
                 viewModel.liveDataToObserve.observe(viewLifecycleOwner, { appState ->
                     when (appState) {
                         is AppState.Error -> {
@@ -43,7 +43,7 @@ class MovieDetailsFragment : Fragment() {
                             movieDetailsRuntime.text =
                                 getString(R.string.movieDetails_runtime)
                                     .plus(appState.movieCardData.runtime.toString())
-                            movieDetailsReleaseYear.text = appState.movieCardData.release_year
+                            movieDetailsReleaseYear.text = appState.movieCardData.release_date.subSequence(0,4)
                             movieDetailsMovieRating.text = appState.movieCardData.rating.toString()
                             movieDetailsPosterImage.setImageResource(R.drawable.generic_movie_poster)
                             movieDetailsMovieSynopsisText.text =
@@ -62,8 +62,8 @@ class MovieDetailsFragment : Fragment() {
                                     .plus(appState.movieCardData.revenue.toString())
                             movieDetailsMovieStatus.text =
                                 getString(R.string.movieDetails_status)
-                                .plus(" \n")
-                                .plus(appState.movieCardData.status)
+                                    .plus(" \n")
+                                    .plus(appState.movieCardData.status)
                         }
                     }
                 })

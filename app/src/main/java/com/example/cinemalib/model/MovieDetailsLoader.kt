@@ -3,7 +3,6 @@ package com.example.cinemalib.model
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.cinemalib.model.recieved_entities.MovieDetailsDTO
-import com.example.cinemalib.model.recieved_entities.MovieListDTO
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -17,13 +16,14 @@ object MovieDetailsLoader {
     fun loadMovieDetails(movie_id: Int): MovieDetailsDTO? {
         try {
             val uri =
-            URL("https://api.themoviedb.org/3/movie/${movie_id}?api_key=cb37ac22ea3216d2a5291d87e4c14152")
+                URL("https://api.themoviedb.org/3/movie/${movie_id}?api_key=cb37ac22ea3216d2a5291d87e4c14152")
 
 
             lateinit var urlConnection: HttpsURLConnection
             try {
                 urlConnection = uri.openConnection() as HttpsURLConnection
                 urlConnection.requestMethod = "GET"
+                //почему-то addRequestProperty не работает
 /*                urlConnection.addRequestProperty("api_key", "cb37ac22ea3216d2a5291d87e4c14152")*/
                 urlConnection.readTimeout = 10000
                 val bufferedReader = BufferedReader(InputStreamReader(urlConnection.inputStream))
@@ -38,14 +38,14 @@ object MovieDetailsLoader {
             } finally {
                 urlConnection.disconnect()
             }
-        } catch (e : MalformedURLException) {
+        } catch (e: MalformedURLException) {
             e.printStackTrace()
         }
 
         return null
     }
 
-    private fun getLinesForOld(reader: BufferedReader) : String {
+    private fun getLinesForOld(reader: BufferedReader): String {
         val rawData = StringBuilder(1024)
         var tempVariable: String?
 
@@ -54,7 +54,7 @@ object MovieDetailsLoader {
         }
 
         reader.close()
-        return  rawData.toString()
+        return rawData.toString()
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

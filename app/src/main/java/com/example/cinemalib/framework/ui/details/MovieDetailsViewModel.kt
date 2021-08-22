@@ -9,9 +9,15 @@ import com.example.cinemalib.model.repository.Repository
 class MovieDetailsViewModel(private val repository: Repository) : ViewModel(), LifecycleObserver {
     val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()
 
-    fun LoadData(movie_id: Int) {
+    fun loadData(movie_id: Int) {
         Thread {
-            liveDataToObserve.postValue(AppState.SuccessMovieCard(repository.getMovieCardFromServer(movie_id)))
+            liveDataToObserve.postValue(
+                AppState.SuccessMovieCard(
+                    repository.getMovieCardFromServer(
+                        movie_id
+                    )
+                )
+            )
         }.start()
     }
 }
