@@ -7,7 +7,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MainFragmentBinding
-import com.example.cinemalib.framework.ui.MovieDetailsFragment
+import com.example.cinemalib.framework.ui.details.MovieDetailsFragment
 import com.example.cinemalib.framework.ui.adapters.MovieListAdapter
 import com.example.cinemalib.model.AppState
 import com.example.cinemalib.model.entities.Movie
@@ -23,8 +23,8 @@ class MainFragment : Fragment() {
 
     private var adapterNowPlayingList: MovieListAdapter? = null
     private var adapterTopMoviesList: MovieListAdapter? = null
-    private val NOW_PLAYING = "now_playing"
-    private val TOP_RATED = "top_rated"
+    private val NOWPLAYING = "now_playing"
+    private val TOPRATED = "top_rated"
 
 
     override fun onCreateView(
@@ -46,7 +46,7 @@ class MainFragment : Fragment() {
             recyclerViewMovies2.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
-            viewModel.getMovieData(NOW_PLAYING)
+            viewModel.getMovieData(NOWPLAYING)
         }
         /*    view.snackbarShow(R.string.app_name)*/
     }
@@ -58,14 +58,14 @@ class MainFragment : Fragment() {
 
     private fun renderData(appState: AppState) = with(binding) {
         when (appState) {
-            is AppState.Success -> {
+            is AppState.SuccessMovieList -> {
                 binding.snackbarShow(R.string.welcome_message)
                 adapterNowPlayingList = MovieListAdapter(object : OnItemClickListener {
-                    override fun onItemViewClick(movieCard: Movie) {
+                    override fun onItemViewClick(movie: Movie) {
                         val managerFR = activity?.supportFragmentManager
                         managerFR?.let { manager ->
                             val bundle = Bundle().apply {
-                                putParcelable(MovieDetailsFragment.BUNDLE_EXTRA, movieCard)
+                                putParcelable(MovieDetailsFragment.BUNDLE_EXTRA, movie)
                             }
                             manager.beginTransaction()
                                 .add(R.id.container, MovieDetailsFragment.newInstance(bundle))
@@ -81,11 +81,11 @@ class MainFragment : Fragment() {
                 recyclerViewMovies.adapter = adapterNowPlayingList
 
                 adapterTopMoviesList = MovieListAdapter(object : OnItemClickListener {
-                    override fun onItemViewClick(movieCard: Movie) {
+                    override fun onItemViewClick(movie: Movie) {
                         val managerFR = activity?.supportFragmentManager
                         managerFR?.let { manager ->
                             val bundle = Bundle().apply {
-                                putParcelable(MovieDetailsFragment.BUNDLE_EXTRA, movieCard)
+                                putParcelable(MovieDetailsFragment.BUNDLE_EXTRA, movie)
                             }
                             manager.beginTransaction()
                                 .add(R.id.container, MovieDetailsFragment.newInstance(bundle))
@@ -96,14 +96,14 @@ class MainFragment : Fragment() {
                     }
                 }
                 ).apply {
-                    setMovieList(appState.movieData.filter { it.rating >= 9 })
+                    setMovieList(appState.movieData)
                 }
                 recyclerViewMovies2.adapter = adapterTopMoviesList
             }
             is AppState.Error -> {
                 Snackbar
                     .make(textView2, getString(R.string.error), Snackbar.LENGTH_INDEFINITE)
-                    .setAction(getString(R.string.reload)) { viewModel.getMovieData() }
+                    .setAction(getString(R.string.reload)) { viewModel.getMovieData(NOWPLAYING) }
                     .show()
             }
         }

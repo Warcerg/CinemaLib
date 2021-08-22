@@ -8,7 +8,7 @@ import java.lang.Thread.sleep
 
 class MainViewModel(private val repository: Repository) : ViewModel(), LifecycleObserver {
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()
-    private val SLEEPVALUE: Long = 750
+    private val SLEEPVALUE: Long = 500
 
     fun getLiveData() = liveDataToObserve
 
@@ -17,7 +17,7 @@ class MainViewModel(private val repository: Repository) : ViewModel(), Lifecycle
     private fun getMovieDataFromServer(queryMovieList: String) {
         Thread {
             sleep(SLEEPVALUE)
-            liveDataToObserve.postValue(AppState.Success(repository.getMovieDataFromServer(queryMovieList)))
+            liveDataToObserve.postValue(AppState.SuccessMovieList(repository.getMovieDataFromServer(queryMovieList)))
         }.start()
     }
 

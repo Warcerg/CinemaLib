@@ -2,28 +2,29 @@ package com.example.cinemalib.model
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.example.cinemalib.model.recieved_entities.MovieDetailsDTO
 import com.example.cinemalib.model.recieved_entities.MovieListDTO
+import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.net.URL
-import javax.net.ssl.HttpsURLConnection
-import com.google.gson.Gson
 import java.lang.Exception
 import java.net.MalformedURLException
+import java.net.URL
 import java.util.stream.Collectors
+import javax.net.ssl.HttpsURLConnection
 
-object MovieListLoader {
-    fun loadMovieList(queryMovieList: String): MovieListDTO? {
+object MovieDetailsLoader {
+    fun loadMovieDetails(movie_id: Int): MovieDetailsDTO? {
         try {
             val uri =
-                URL("https://api.themoviedb.org/3/movie/${queryMovieList}?api_key=cb37ac22ea3216d2a5291d87e4c14152")
-       /*     URL("https://api.themoviedb.org/3/movie/now_playing?api_key=cb37ac22ea3216d2a5291d87e4c14152")*/
+            URL("https://api.themoviedb.org/3/movie/${movie_id}?api_key=cb37ac22ea3216d2a5291d87e4c14152")
+
 
             lateinit var urlConnection: HttpsURLConnection
             try {
                 urlConnection = uri.openConnection() as HttpsURLConnection
                 urlConnection.requestMethod = "GET"
-                urlConnection.addRequestProperty("api_key", "cb37ac22ea3216d2a5291d87e4c14152")
+/*                urlConnection.addRequestProperty("api_key", "cb37ac22ea3216d2a5291d87e4c14152")*/
                 urlConnection.readTimeout = 10000
                 val bufferedReader = BufferedReader(InputStreamReader(urlConnection.inputStream))
                 val lines = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
@@ -31,7 +32,7 @@ object MovieListLoader {
                 } else {
                     getLines(bufferedReader)
                 }
-                return Gson().fromJson(lines, MovieListDTO::class.java)
+                return Gson().fromJson(lines, MovieDetailsDTO::class.java)
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {

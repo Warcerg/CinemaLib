@@ -27,8 +27,12 @@
     <string name="movieDetails_trivia">Trivia</string>
     <string name="movieDetails_triviatext">TriviaText</string>
     <string name="movieDetails_budget">Budget: </string>
-    <string name="movieDetails_synopsis">Synopsis</string>
+    <string name="movieDetails_synopsis">Overview</string>
     <string name="movieDetails_genre">Genre: </string>
-    <string name="movieDetails_synopsis_text">Synopsis text</string>
-    <string name="movieDetails_gross_worldwide">Gross worldwide: </string>
+    <string name="movieDetails_status">Status: </string>
+    <string name="movieDetails_runtime">Runtime : </string>
+    <string name="movieDetails_synopsis_text">Overview text</string>
+    <string name="movieDetails_gross_worldwide">Revenue: </string>
+    <string name="movieDetails_minutes"> minutes </string>
+
 </resources>
