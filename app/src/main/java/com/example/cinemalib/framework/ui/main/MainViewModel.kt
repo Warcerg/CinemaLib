@@ -12,12 +12,12 @@ class MainViewModel(private val repository: Repository) : ViewModel(), Lifecycle
 
     fun getLiveData() = liveDataToObserve
 
-    fun getMovieData() = getMovieDataFromLocalSource()
+    fun getMovieData(queryMovieList: String) = getMovieDataFromServer(queryMovieList)
 
-    private fun getMovieDataFromLocalSource() {
+    private fun getMovieDataFromServer(queryMovieList: String) {
         Thread {
             sleep(SLEEPVALUE)
-            liveDataToObserve.postValue(AppState.Success(repository.getMovieFromLocalStorage()))
+            liveDataToObserve.postValue(AppState.Success(repository.getMovieDataFromServer(queryMovieList)))
         }.start()
     }
 
