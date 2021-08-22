@@ -17,7 +17,6 @@ object MovieListLoader {
         try {
             val uri =
                 URL("https://api.themoviedb.org/3/movie/${queryMovieList}?api_key=cb37ac22ea3216d2a5291d87e4c14152")
-       /*     URL("https://api.themoviedb.org/3/movie/now_playing?api_key=cb37ac22ea3216d2a5291d87e4c14152")*/
 
             lateinit var urlConnection: HttpsURLConnection
             try {

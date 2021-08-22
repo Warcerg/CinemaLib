@@ -46,7 +46,7 @@ class MainFragment : Fragment() {
             recyclerViewMovies2.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
-            viewModel.getMovieData(NOWPLAYING)
+            viewModel.getMovieData(NOWPLAYING, TOPRATED)
         }
         /*    view.snackbarShow(R.string.app_name)*/
     }
@@ -58,7 +58,7 @@ class MainFragment : Fragment() {
 
     private fun renderData(appState: AppState) = with(binding) {
         when (appState) {
-            is AppState.SuccessMovieList -> {
+            is AppState.SuccessList -> {
                 binding.snackbarShow(R.string.welcome_message)
                 adapterNowPlayingList = MovieListAdapter(object : OnItemClickListener {
                     override fun onItemViewClick(movie: Movie) {
@@ -76,7 +76,7 @@ class MainFragment : Fragment() {
                     }
                 }
                 ).apply {
-                    setMovieList(appState.movieData)
+                    setMovieList(appState.movieData.get(0))
                 }
                 recyclerViewMovies.adapter = adapterNowPlayingList
 
@@ -96,14 +96,14 @@ class MainFragment : Fragment() {
                     }
                 }
                 ).apply {
-                    setMovieList(appState.movieData)
+                    setMovieList(appState.movieData.get(1))
                 }
                 recyclerViewMovies2.adapter = adapterTopMoviesList
             }
             is AppState.Error -> {
                 Snackbar
                     .make(textView2, getString(R.string.error), Snackbar.LENGTH_INDEFINITE)
-                    .setAction(getString(R.string.reload)) { viewModel.getMovieData(NOWPLAYING) }
+                    .setAction(getString(R.string.reload)) { viewModel.getMovieData(NOWPLAYING, TOPRATED) }
                     .show()
             }
         }

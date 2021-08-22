@@ -9,7 +9,7 @@ import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MovieListRecyclerFragmentBinding
 import com.example.cinemalib.framework.ui.main.MainFragment
 import com.example.cinemalib.model.entities.Movie
-import com.example.cinemalib.model.entities.MovieCard
+
 
 class MovieListAdapter(private var itemClickListener: MainFragment.OnItemClickListener) :
     RecyclerView.Adapter<MovieListAdapter.MainViewHolder>() {

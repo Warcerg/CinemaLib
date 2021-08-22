@@ -3,6 +3,8 @@ package com.example.cinemalib.framework.ui.main
 
 import androidx.lifecycle.*
 import com.example.cinemalib.model.AppState
+import com.example.cinemalib.model.entities.Movie
+import com.example.cinemalib.model.entities.MovieList
 import com.example.cinemalib.model.repository.Repository
 import java.lang.Thread.sleep
 
@@ -12,12 +14,13 @@ class MainViewModel(private val repository: Repository) : ViewModel(), Lifecycle
 
     fun getLiveData() = liveDataToObserve
 
-    fun getMovieData(queryMovieList: String) = getMovieDataFromServer(queryMovieList)
+    fun getMovieData(queryMovieList: String, queryMovieList2: String) = getMovieDataFromServer(queryMovieList, queryMovieList2)
 
-    private fun getMovieDataFromServer(queryMovieList: String) {
+    private fun getMovieDataFromServer(queryMovieList: String, queryMovieList2: String) {
         Thread {
             sleep(SLEEPVALUE)
-            liveDataToObserve.postValue(AppState.SuccessMovieList(repository.getMovieDataFromServer(queryMovieList)))
+            val mvList = mutableListOf<List<Movie>>(repository.getMovieDataFromServer(queryMovieList), repository.getMovieDataFromServer(queryMovieList2))
+            liveDataToObserve.postValue(AppState.SuccessList(mvList))
         }.start()
     }
 

@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/movie_details_small_info_top_margin"
         android:text="@string/movieDetails_runtime"
-        android:textAlignment="textEnd"
+        android:textAlignment="center"
         android:textStyle="italic"
         android:textSize="@dimen/movie_details_director_text_size"
         app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieTitle"
@@ -136,7 +136,7 @@
 
             <TextView
                 android:id="@+id/movieDetailsMovieTriviaHeader"
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/movieDetails_trivia"
@@ -149,7 +149,7 @@
 
             <TextView
                 android:id="@+id/movieDetailsMovieTriviaText"
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/movieDetails_triviatext"

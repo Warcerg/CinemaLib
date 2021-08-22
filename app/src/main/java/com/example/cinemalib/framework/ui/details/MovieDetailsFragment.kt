@@ -43,8 +43,6 @@ class MovieDetailsFragment : Fragment() {
                             movieDetailsRuntime.text =
                                 getString(R.string.movieDetails_runtime)
                                     .plus(appState.movieCardData.runtime.toString())
-/*                                    .plus(" ")
-                                    .plus(getString(R.string.movieDetails_minutes))*/
                             movieDetailsReleaseYear.text = appState.movieCardData.release_year
                             movieDetailsMovieRating.text = appState.movieCardData.rating.toString()
                             movieDetailsPosterImage.setImageResource(R.drawable.generic_movie_poster)
