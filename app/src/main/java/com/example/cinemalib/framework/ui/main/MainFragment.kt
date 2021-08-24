@@ -7,10 +7,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MainFragmentBinding
-import com.example.cinemalib.framework.ui.MovieDetailsFragment
+import com.example.cinemalib.framework.ui.details.MovieDetailsFragment
 import com.example.cinemalib.framework.ui.adapters.MovieListAdapter
 import com.example.cinemalib.model.AppState
-import com.example.cinemalib.model.entities.MovieCard
+import com.example.cinemalib.model.entities.Movie
 import com.example.cinemalib.snackbarShow
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,8 +21,10 @@ class MainFragment : Fragment() {
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var adapterNewReleasesList: MovieListAdapter? = null
+    private var adapterNowPlayingList: MovieListAdapter? = null
     private var adapterTopMoviesList: MovieListAdapter? = null
+    private val NOWPLAYING = "now_playing"
+    private val TOPRATED = "top_rated"
 
 
     override fun onCreateView(
@@ -37,16 +39,15 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            recyclerViewMovies.adapter = adapterNewReleasesList
+            recyclerViewMovies.adapter = adapterNowPlayingList
             recyclerViewMovies.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             recyclerViewMovies2.adapter = adapterTopMoviesList
             recyclerViewMovies2.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
-            viewModel.getMovieData()
+            viewModel.getMovieData(NOWPLAYING, TOPRATED)
         }
-        /*    view.snackbarShow(R.string.app_name)*/
     }
 
     override fun onDestroyView() {
@@ -56,14 +57,14 @@ class MainFragment : Fragment() {
 
     private fun renderData(appState: AppState) = with(binding) {
         when (appState) {
-            is AppState.Success -> {
+            is AppState.SuccessMovieLists -> {
                 binding.snackbarShow(R.string.welcome_message)
-                adapterNewReleasesList = MovieListAdapter(object : OnItemClickListener {
-                    override fun onItemViewClick(movieCard: MovieCard) {
+                adapterNowPlayingList = MovieListAdapter(object : OnItemClickListener {
+                    override fun onItemViewClick(movie: Movie) {
                         val managerFR = activity?.supportFragmentManager
                         managerFR?.let { manager ->
                             val bundle = Bundle().apply {
-                                putParcelable(MovieDetailsFragment.BUNDLE_EXTRA, movieCard)
+                                putParcelable(MovieDetailsFragment.BUNDLE_EXTRA, movie)
                             }
                             manager.beginTransaction()
                                 .add(R.id.container, MovieDetailsFragment.newInstance(bundle))
@@ -74,16 +75,16 @@ class MainFragment : Fragment() {
                     }
                 }
                 ).apply {
-                    setMovieCard(appState.movieData)
+                    setMovieList(appState.movieData[0])
                 }
-                recyclerViewMovies.adapter = adapterNewReleasesList
+                recyclerViewMovies.adapter = adapterNowPlayingList
 
                 adapterTopMoviesList = MovieListAdapter(object : OnItemClickListener {
-                    override fun onItemViewClick(movieCard: MovieCard) {
+                    override fun onItemViewClick(movie: Movie) {
                         val managerFR = activity?.supportFragmentManager
                         managerFR?.let { manager ->
                             val bundle = Bundle().apply {
-                                putParcelable(MovieDetailsFragment.BUNDLE_EXTRA, movieCard)
+                                putParcelable(MovieDetailsFragment.BUNDLE_EXTRA, movie)
                             }
                             manager.beginTransaction()
                                 .add(R.id.container, MovieDetailsFragment.newInstance(bundle))
@@ -94,14 +95,19 @@ class MainFragment : Fragment() {
                     }
                 }
                 ).apply {
-                    setMovieCard(appState.movieData.filter { it.rating >= 9 })
+                    setMovieList(appState.movieData[1])
                 }
                 recyclerViewMovies2.adapter = adapterTopMoviesList
             }
             is AppState.Error -> {
                 Snackbar
                     .make(textView2, getString(R.string.error), Snackbar.LENGTH_INDEFINITE)
-                    .setAction(getString(R.string.reload)) { viewModel.getMovieData() }
+                    .setAction(getString(R.string.reload)) {
+                        viewModel.getMovieData(
+                            NOWPLAYING,
+                            TOPRATED
+                        )
+                    }
                     .show()
             }
         }
@@ -144,6 +150,6 @@ class MainFragment : Fragment() {
     }
 
     interface OnItemClickListener {
-        fun onItemViewClick(movieCard: MovieCard)
+        fun onItemViewClick(movieCard: Movie)
     }
 }

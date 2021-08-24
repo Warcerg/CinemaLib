@@ -17,8 +17,8 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/movieDetailsMovieRating"
         app:layout_constraintHorizontal_bias="0.345"
-        app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieDirector"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieDirector" />
+        app:layout_constraintStart_toStartOf="@+id/movieDetailsRuntime"
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsRuntime" />
 
     <TextView
         android:id="@+id/movieDetailsMovieRating"
@@ -26,9 +26,9 @@
         android:layout_height="wrap_content"
         android:text="@string/movieDetails_rating"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieDirector"
+        app:layout_constraintEnd_toEndOf="@+id/movieDetailsRuntime"
         app:layout_constraintStart_toEndOf="@id/movieDetailsReleaseYear"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieDirector" />
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsRuntime" />
 
     <TextView
         android:id="@+id/movieDetailsMovieBudget"
@@ -43,14 +43,14 @@
 
 
     <TextView
-        android:id="@+id/movieDetailsMovieGenre"
+        android:id="@+id/movieDetailsMovieStatus"
         android:layout_width="@dimen/movie_details_small_info_section_layout_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/movie_details_small_info_top_margin"
-        android:text="@string/movieDetails_genre"
-        app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieGrossWorldwide"
-        app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieGrossWorldwide"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieGrossWorldwide" />
+        android:text="@string/movieDetails_status"
+        app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieRevenue"
+        app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieRevenue"
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieRevenue" />
 
     <TextView
         android:id="@+id/movieDetailsMovieReleaseDate"
@@ -77,12 +77,12 @@
 
 
     <TextView
-        android:id="@+id/movieDetailsMovieDirector"
+        android:id="@+id/movieDetailsRuntime"
         android:layout_width="@dimen/movie_details_title_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/movie_details_small_info_top_margin"
-        android:text="@string/movieDetails_moviedirector"
-        android:textAlignment="textEnd"
+        android:text="@string/movieDetails_runtime"
+        android:textAlignment="center"
         android:textStyle="italic"
         android:textSize="@dimen/movie_details_director_text_size"
         app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieTitle"
@@ -90,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieTitle" />
 
     <TextView
-        android:id="@+id/movieDetailsMovieGrossWorldwide"
+        android:id="@+id/movieDetailsMovieRevenue"
         android:layout_width="@dimen/movie_details_small_info_section_layout_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/movie_details_small_info_top_margin"
@@ -110,7 +110,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/movie_details_linear_layout_details"
+            android:layout_marginEnd="@dimen/movie_details_linear_layout_details">
 
             <TextView
                 android:id="@+id/movieDetailsMovieSynopsisHeader"
@@ -136,6 +138,7 @@
 
             <TextView
                 android:id="@+id/movieDetailsMovieTriviaHeader"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/movieDetails_trivia"
@@ -148,6 +151,7 @@
 
             <TextView
                 android:id="@+id/movieDetailsMovieTriviaText"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/movieDetails_triviatext"

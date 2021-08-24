@@ -8,16 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MovieListRecyclerFragmentBinding
 import com.example.cinemalib.framework.ui.main.MainFragment
-import com.example.cinemalib.model.entities.MovieCard
+import com.example.cinemalib.model.entities.Movie
+
 
 class MovieListAdapter(private var itemClickListener: MainFragment.OnItemClickListener) :
     RecyclerView.Adapter<MovieListAdapter.MainViewHolder>() {
-    private var movieCardData: List<MovieCard> = listOf()
+    private var movieListData: List<Movie> = listOf()
     private lateinit var binding: MovieListRecyclerFragmentBinding
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setMovieCard(data: List<MovieCard>) {
-        movieCardData = data
+    fun setMovieList(data: List<Movie>) {
+        movieListData = data
         notifyDataSetChanged()
     }
 
@@ -31,20 +32,19 @@ class MovieListAdapter(private var itemClickListener: MainFragment.OnItemClickLi
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.bind(movieCardData[position])
+        holder.bind(movieListData[position])
     }
 
-    override fun getItemCount() = movieCardData.size
+    override fun getItemCount() = movieListData.size
 
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(movieCard: MovieCard) = with(binding) {
-            movieTitleText.text = movieCard.movie.title
-            movieDirectorText.text = movieCard.movie.director
-            movieReleaseDateText.text = movieCard.movie.year
-            movieRatingNumberText.text = movieCard.rating.toString()
+        fun bind(movie: Movie) = with(binding) {
+            movieTitleText.text = movie.title
+            movieReleaseDateText.text = movie.releaseDate
+            movieRatingNumberText.text = movie.rating.toString()
             moviePic.setImageResource(R.drawable.generic_movie_poster)
-            root.setOnClickListener { itemClickListener.onItemViewClick(movieCard) }
+            root.setOnClickListener { itemClickListener.onItemViewClick(movie) }
         }
     }
 
