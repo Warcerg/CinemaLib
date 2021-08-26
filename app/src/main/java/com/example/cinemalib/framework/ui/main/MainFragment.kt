@@ -1,9 +1,18 @@
 package com.example.cinemalib.framework.ui.main
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import android.net.ConnectivityManager.NetworkCallback
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MainFragmentBinding
@@ -25,6 +34,17 @@ class MainFragment : Fragment() {
     private var adapterTopMoviesList: MovieListAdapter? = null
     private val NOWPLAYING = "now_playing"
     private val TOPRATED = "top_rated"
+
+    private val connectReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val connectivityManager: ConnectivityManager =
+                context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val info1 = connectivityManager.activeNetworkInfo
+            Toast.makeText(
+                context, "$info1", Toast.LENGTH_LONG
+            ).show()
+        }
+    }
 
 
     override fun onCreateView(
@@ -48,6 +68,11 @@ class MainFragment : Fragment() {
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
             viewModel.getMovieData(NOWPLAYING, TOPRATED)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        activity?.registerReceiver(connectReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
 
     override fun onDestroyView() {
