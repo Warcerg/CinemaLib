@@ -5,19 +5,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
-import android.net.ConnectivityManager.NetworkCallback
-import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.getSystemService
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MainFragmentBinding
-import com.example.cinemalib.framework.ui.details.MovieDetailsFragment
 import com.example.cinemalib.framework.ui.adapters.MovieListAdapter
+import com.example.cinemalib.framework.ui.details.MovieDetailsFragment
 import com.example.cinemalib.model.AppState
 import com.example.cinemalib.model.entities.Movie
 import com.example.cinemalib.snackbarShow
@@ -75,6 +72,11 @@ class MainFragment : Fragment() {
         activity?.registerReceiver(connectReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
 
+    override fun onStop() {
+        super.onStop()
+        activity?.unregisterReceiver(connectReceiver)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -83,7 +85,6 @@ class MainFragment : Fragment() {
     private fun renderData(appState: AppState) = with(binding) {
         when (appState) {
             is AppState.SuccessMovieLists -> {
-                binding.snackbarShow(R.string.welcome_message)
                 adapterNowPlayingList = MovieListAdapter(object : OnItemClickListener {
                     override fun onItemViewClick(movie: Movie) {
                         val managerFR = activity?.supportFragmentManager

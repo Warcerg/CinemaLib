@@ -23,8 +23,6 @@ object MovieDetailsLoader {
             try {
                 urlConnection = uri.openConnection() as HttpsURLConnection
                 urlConnection.requestMethod = "GET"
-                //почему-то addRequestProperty не работает
-/*                urlConnection.addRequestProperty("api_key", "cb37ac22ea3216d2a5291d87e4c14152")*/
                 urlConnection.readTimeout = 10000
                 val bufferedReader = BufferedReader(InputStreamReader(urlConnection.inputStream))
                 val lines = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
