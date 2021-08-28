@@ -2,7 +2,7 @@ package com.example.cinemalib.model
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.example.cinemalib.model.recieved_entities.MovieDetailsDTO
+import com.example.cinemalib.model.received_data.recieved_entities.MovieDetailsDTO
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader

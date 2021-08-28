@@ -58,7 +58,6 @@ class MainFragment : Fragment() {
     private fun renderData(appState: AppState) = with(binding) {
         when (appState) {
             is AppState.SuccessMovieLists -> {
-                binding.snackbarShow(R.string.welcome_message)
                 adapterNowPlayingList = MovieListAdapter(object : OnItemClickListener {
                     override fun onItemViewClick(movie: Movie) {
                         val managerFR = activity?.supportFragmentManager

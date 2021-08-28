@@ -13,6 +13,7 @@ data class MovieCard(
     val runtime: Int,
     val plot_overview: String?,
     val rating: Double,
-    val status: String
+    val status: String,
+    val poster: String
 ) : Parcelable
 

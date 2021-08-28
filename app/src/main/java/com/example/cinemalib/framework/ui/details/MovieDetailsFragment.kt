@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import coil.api.load
+import coil.size.Scale
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MovieDetailsFragmentBinding
 import com.example.cinemalib.model.AppState
 import com.example.cinemalib.model.entities.Movie
+import com.example.cinemalib.model.received_data.ApiUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -45,7 +48,10 @@ class MovieDetailsFragment : Fragment() {
                                     .plus(appState.movieCardData.runtime.toString())
                             movieDetailsReleaseYear.text = appState.movieCardData.release_date.subSequence(0,4)
                             movieDetailsMovieRating.text = appState.movieCardData.rating.toString()
-                            movieDetailsPosterImage.setImageResource(R.drawable.generic_movie_poster)
+                            movieDetailsPosterImage.load("${ApiUtils.posterUrl}${appState.movieCardData.poster}") {
+                                scale(Scale.FIT)
+                                placeholder(R.drawable.generic_movie_poster)
+                            }
                             movieDetailsMovieSynopsisText.text =
                                 appState.movieCardData.plot_overview
                             movieDetailsMovieReleaseDate.text =

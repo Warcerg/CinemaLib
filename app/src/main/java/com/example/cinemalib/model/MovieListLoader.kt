@@ -2,7 +2,7 @@ package com.example.cinemalib.model
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.example.cinemalib.model.recieved_entities.MovieListDTO
+import com.example.cinemalib.model.received_data.recieved_entities.MovieListDTO
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.URL
