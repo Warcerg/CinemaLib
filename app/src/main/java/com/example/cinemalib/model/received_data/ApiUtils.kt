@@ -10,9 +10,9 @@ object ApiUtils {
     private val posterUrlMainPArt = "https://image.tmdb.org/t/p/w500"
     val baseUrl = "$baseUrlMainPart$baseUrlVersion$baseUrlReqType"
     val posterUrl = "$posterUrlMainPArt"
-    val apiKey = "cb37ac22ea3216d2a5291d87e4c14152"
+    const val APIKEY = "cb37ac22ea3216d2a5291d87e4c14152"
 
-    fun getOkHTTPBuilder(): OkHttpClient{
+    fun getOkHTTPBuilder(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.connectTimeout(10, TimeUnit.SECONDS)
         httpClient.readTimeout(10, TimeUnit.SECONDS)

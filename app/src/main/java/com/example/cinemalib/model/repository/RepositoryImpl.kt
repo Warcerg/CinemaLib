@@ -8,7 +8,7 @@ import com.example.cinemalib.model.received_data.MovieDataRepo
 
 class RepositoryImpl : Repository {
     override fun getMovieDataFromServer(queryMovieList: String): List<Movie> {
-        val dto = MovieDataRepo.API.getMovieList(queryMovieList ).execute().body()
+        val dto = MovieDataRepo.API.getMovieList(queryMovieList).execute().body()
         val movList = mutableListOf<Movie>()
         if (dto?.results != null) {
             for (result in dto.results) {

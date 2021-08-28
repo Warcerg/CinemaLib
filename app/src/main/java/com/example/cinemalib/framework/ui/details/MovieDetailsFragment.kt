@@ -46,7 +46,8 @@ class MovieDetailsFragment : Fragment() {
                             movieDetailsRuntime.text =
                                 getString(R.string.movieDetails_runtime)
                                     .plus(appState.movieCardData.runtime.toString())
-                            movieDetailsReleaseYear.text = appState.movieCardData.release_date.subSequence(0,4)
+                            movieDetailsReleaseYear.text =
+                                appState.movieCardData.release_date.subSequence(0, 4)
                             movieDetailsMovieRating.text = appState.movieCardData.rating.toString()
                             movieDetailsPosterImage.load("${ApiUtils.posterUrl}${appState.movieCardData.poster}") {
                                 scale(Scale.FIT)
