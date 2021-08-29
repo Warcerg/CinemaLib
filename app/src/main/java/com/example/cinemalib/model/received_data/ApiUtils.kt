@@ -9,7 +9,7 @@ object ApiUtils {
     private val baseUrlReqType = "movie/"
     private val posterUrlMainPArt = "https://image.tmdb.org/t/p/w500"
     val baseUrl = "$baseUrlMainPart$baseUrlVersion$baseUrlReqType"
-    val posterUrl = "$posterUrlMainPArt"
+    val posterUrl = posterUrlMainPArt
     const val APIKEY = "cb37ac22ea3216d2a5291d87e4c14152"
 
     fun getOkHTTPBuilder(): OkHttpClient {

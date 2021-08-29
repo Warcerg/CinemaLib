@@ -1,6 +1,5 @@
 package com.example.cinemalib.model.repository
 
-import com.example.cinemalib.model.MovieDetailsLoader
 import com.example.cinemalib.model.entities.Movie
 import com.example.cinemalib.model.entities.MovieCard
 import com.example.cinemalib.model.received_data.MovieDataRepo

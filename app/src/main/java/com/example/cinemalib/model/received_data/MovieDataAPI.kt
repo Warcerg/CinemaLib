@@ -13,9 +13,9 @@ interface MovieDataAPI {
         @Path("requestType") requestType: String
     ): Call<MovieListDTO>
 
-    @GET("{requestType}?api_key=${ApiUtils.APIKEY}")
+    @GET("{movieID}?api_key=${ApiUtils.APIKEY}")
     fun getMovieCard(
-        @Path("requestType") requestType: String
+        @Path("movieID") movieID: String
     ): Call<MovieDetailsDTO>
 
 
