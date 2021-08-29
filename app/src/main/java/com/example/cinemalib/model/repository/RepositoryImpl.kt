@@ -17,7 +17,8 @@ class RepositoryImpl : Repository {
                         releaseDate = result.release_date ?: "",
                         rating = result.vote_average ?: 0.0,
                         id = result.id ?: 0,
-                        poster = result.poster_path ?: ""
+                        poster = result.poster_path ?: "",
+                        adult = result.adult ?: true
                     )
                 )
             }
@@ -37,7 +38,8 @@ class RepositoryImpl : Repository {
             revenue = dto?.revenue ?: 0,
             runtime = dto?.runtime ?: 0,
             status = dto?.status ?: "",
-            poster = dto?.poster_path ?: ""
+            poster = dto?.poster_path ?: "",
+            adult = dto?.adult ?: true
         )
     }
 

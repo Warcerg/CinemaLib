@@ -11,6 +11,7 @@ class MovieDetailsDTO(
     val overview: String?,
     val vote_average: Double?,
     val status: String?,
-    val poster_path: String?
+    val poster_path: String?,
+    val adult: Boolean?
 
 )

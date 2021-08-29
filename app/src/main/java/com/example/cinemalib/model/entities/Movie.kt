@@ -11,7 +11,8 @@ data class Movie(
     val releaseDate: String,
     val rating: Double,
     val id: Int,
-    val poster: String
+    val poster: String,
+    val adult: Boolean
 ) : Parcelable {
     companion object {
     }
