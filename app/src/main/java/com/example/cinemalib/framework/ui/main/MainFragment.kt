@@ -3,7 +3,6 @@ package com.example.cinemalib.framework.ui.main
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MainFragmentBinding
@@ -31,7 +30,6 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setHasOptionsMenu(true)
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -110,38 +108,6 @@ class MainFragment : Fragment() {
                     .show()
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.top_menu, menu)
-        val search = menu.findItem(R.id.action_search)
-        val searchText = search.actionView as SearchView
-        searchText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                binding.snackbarShow(query)
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                return true
-            }
-        })
-
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_settings -> {
-                binding.snackbarShow(R.string.settings_frag)
-                return true
-            }
-            R.id.action_about -> {
-                binding.snackbarShow(R.string.about_app_frag)
-                return true
-            }
-        }
-        return false
-
     }
 
     companion object {

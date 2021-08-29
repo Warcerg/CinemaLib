@@ -34,5 +34,6 @@
     <string name="movieDetails_synopsis_text">Overview text</string>
     <string name="movieDetails_gross_worldwide">Revenue: </string>
     <string name="movieDetails_minutes"> minutes </string>
+    <string name="menu_history">History</string>
 
 </resources>
