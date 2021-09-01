@@ -1,5 +1,7 @@
 package com.example.cinemalib.model.repository
 
+import com.example.cinemalib.model.database.Database
+import com.example.cinemalib.model.database.HistoryEntity
 import com.example.cinemalib.model.entities.Movie
 import com.example.cinemalib.model.entities.MovieCard
 import com.example.cinemalib.model.received_data.MovieDataRepo
@@ -42,5 +44,25 @@ class RepositoryImpl : Repository {
             adult = dto?.adult ?: true
         )
     }
+
+    override fun getAllHistory(): List<MovieCard> =
+        convertHistoryEntityToMovieCard(Database.db.historyDao().all())
+
+
+    override fun saveEntity(movieCard: MovieCard) {
+        Database.db.historyDao().insert(convertMovieCardToEntity(movieCard))
+    }
+
+    private fun convertHistoryEntityToMovieCard(entityList: List<HistoryEntity>):List<MovieCard> =
+        entityList.map {
+            MovieCard(it.movieId, it.title, it.budget, it.release_date,
+                it.revenue, it.runtime, it.plot_overview, it.rating, it.status,
+                it.poster, it.adult, it.note  )
+        }
+
+    private fun convertMovieCardToEntity(movieCard: MovieCard): HistoryEntity =
+        HistoryEntity(movieCard.id,movieCard.title, movieCard.budget, movieCard.release_date,
+            movieCard.revenue, movieCard.runtime, movieCard.plot_overview, movieCard.rating, movieCard.status,
+            movieCard.poster, movieCard.adult, movieCard.note ?: "")
 
 }

@@ -5,13 +5,16 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class HistoryEntity(
-  @PrimaryKey(autoGenerate = true) val id: Long,
-  val title : String,
-  val releaseDate: String,
+  @PrimaryKey(autoGenerate = false) val movieId: Int,
+  val title: String,
+  val budget: Int,
+  val release_date: String,
+  val revenue: Int,
+  val runtime: Int,
+  val plot_overview: String?,
   val rating: Double,
-  val movieID : Int,
+  val status: String,
   val poster: String,
   val adult: Boolean,
-  val user_notes: String,
-  val runtime: Int
+  val note: String
 )

@@ -15,6 +15,7 @@ data class MovieCard(
     val rating: Double,
     val status: String,
     val poster: String,
-    val adult: Boolean
+    val adult: Boolean,
+    val note: String = ""
 ) : Parcelable
 

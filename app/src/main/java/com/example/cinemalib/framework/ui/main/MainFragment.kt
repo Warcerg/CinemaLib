@@ -1,5 +1,6 @@
 package com.example.cinemalib.framework.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -24,6 +25,9 @@ class MainFragment : Fragment() {
     private var adapterTopMoviesList: MovieListAdapter? = null
     private val NOWPLAYING = "now_playing"
     private val TOPRATED = "top_rated"
+    private val IS_ADULT_FILTER = "ADULT_FILTER"
+
+    private var isAdultFilter: Boolean = false
 
 
     override fun onCreateView(
@@ -36,6 +40,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadData()
         with(binding) {
             recyclerViewMovies.adapter = adapterNowPlayingList
             recyclerViewMovies.layoutManager =
@@ -45,6 +50,12 @@ class MainFragment : Fragment() {
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
             viewModel.getMovieData(NOWPLAYING, TOPRATED)
+        }
+    }
+
+    private fun loadData() {
+        activity?.let {
+            isAdultFilter = it.getPreferences(Context.MODE_PRIVATE).getBoolean(IS_ADULT_FILTER, false)
         }
     }
 
@@ -72,7 +83,11 @@ class MainFragment : Fragment() {
                     }
                 }
                 ).apply {
-                    setMovieList(appState.movieData[0])
+                    if (isAdultFilter) {
+                        setMovieList(appState.movieData[0].filter { !it.adult })
+                    } else {
+                        setMovieList(appState.movieData[0])
+                    }
                 }
                 recyclerViewMovies.adapter = adapterNowPlayingList
 
@@ -92,7 +107,11 @@ class MainFragment : Fragment() {
                     }
                 }
                 ).apply {
-                    setMovieList(appState.movieData[1])
+                    if (isAdultFilter) {
+                        setMovieList(appState.movieData[1].filter { !it.adult})
+                    } else {
+                        setMovieList(appState.movieData[1])
+                    }
                 }
                 recyclerViewMovies2.adapter = adapterTopMoviesList
             }

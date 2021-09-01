@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.example.cinemalib.R
+import com.example.cinemalib.framework.ui.history.HistoryFragment
 import com.example.cinemalib.framework.ui.main.MainFragment
+import com.example.cinemalib.framework.ui.settings.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,11 +48,11 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_history -> {
-/*                openFragment(HistoryFragment.newInstance())*/
+                openFragment(HistoryFragment.newInstance())
                 true
             }
             R.id.menu_settings -> {
-                Toast.makeText(this@MainActivity,R.string.top_menu_settings,Toast.LENGTH_LONG).show()
+                openFragment(SettingsFragment.newInstance())
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -59,10 +61,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun openFragment(fragment: Fragment) {
         supportFragmentManager.apply {
-            beginTransaction()
-                .add(R.id.container, fragment)
-                .addToBackStack("")
-                .commitAllowingStateLoss()
+            getSupportFragmentManager().findFragmentById(R.id.container)?.let {
+                beginTransaction()
+                        .add(R.id.container, fragment)
+                        .addToBackStack("")
+                        .remove(it)
+                        .commitAllowingStateLoss()
+            }
         }
     }
 }

@@ -100,19 +100,20 @@
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieBudget" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/movie_details_mainpart_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/movieDetailsPosterImage"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieRating"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieRating">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginStart="@dimen/movie_details_linear_layout_details"
-            android:layout_marginEnd="@dimen/movie_details_linear_layout_details">
+            android:layout_marginEnd="@dimen/movie_details_linear_layout_details"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/movieDetailsMovieSynopsisHeader"
@@ -138,12 +139,12 @@
 
             <TextView
                 android:id="@+id/movieDetailsMovieTriviaHeader"
-                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/movieDetails_trivia"
                 android:textSize="@dimen/movie_details_small_headings_text_size"
                 android:textStyle="italic"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieSynopsisText"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieSynopsisText"
@@ -151,10 +152,10 @@
 
             <TextView
                 android:id="@+id/movieDetailsMovieTriviaText"
-                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/movieDetails_triviatext"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieTriviaHeader"
                 app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieTriviaHeader"
                 app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieTriviaHeader" />
@@ -172,5 +173,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsReleaseYear"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <EditText
+        android:id="@+id/movieDetailsNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/notes"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/movieDetailsMovieStatus"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

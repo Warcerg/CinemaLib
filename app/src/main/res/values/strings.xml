@@ -35,5 +35,7 @@
     <string name="movieDetails_gross_worldwide">Revenue: </string>
     <string name="movieDetails_minutes"> minutes </string>
     <string name="menu_history">History</string>
+    <string name="settings_adult_filter">Adult filter</string>
+    <string name="notes">Notes</string>
 
 </resources>

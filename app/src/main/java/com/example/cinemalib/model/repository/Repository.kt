@@ -6,4 +6,6 @@ import com.example.cinemalib.model.entities.MovieCard
 interface Repository {
     fun getMovieDataFromServer(queryMovieList: String): List<Movie>
     fun getMovieCardFromServer(movie_id: Int): MovieCard
+    fun getAllHistory() : List<MovieCard>
+    fun saveEntity(movieCard: MovieCard)
 }

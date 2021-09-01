@@ -71,6 +71,7 @@ class MovieDetailsFragment : Fragment() {
                                 getString(R.string.movieDetails_status)
                                     .plus(" \n")
                                     .plus(appState.movieCardData.status)
+                            movieDetailsNote.setText(appState.movieCardData.note)
                         }
                     }
                 })

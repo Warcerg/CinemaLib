@@ -11,13 +11,11 @@ class MovieDetailsViewModel(private val repository: Repository) : ViewModel(), L
 
     fun loadData(movie_id: Int) {
         Thread {
+            val data =  repository.getMovieCardFromServer(movie_id)
+            repository.saveEntity(data)
             liveDataToObserve.postValue(
-                AppState.SuccessMovieCard(
-                    repository.getMovieCardFromServer(
-                        movie_id
-                    )
+                    AppState.SuccessMovieCard(data)
                 )
-            )
         }.start()
     }
 }
