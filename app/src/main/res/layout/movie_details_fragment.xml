@@ -137,28 +137,17 @@
                 app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieSynopsisHeader"
                 app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieSynopsisHeader" />
 
-            <TextView
-                android:id="@+id/movieDetailsMovieTriviaHeader"
+            <EditText
+                android:id="@+id/movieDetailsNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/movieDetails_trivia"
-                android:textSize="@dimen/movie_details_small_headings_text_size"
-                android:textStyle="italic"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieSynopsisText"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieSynopsisText"
-                app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieSynopsisText" />
+                android:ems="10"
+                android:layout_marginTop="@dimen/editText_margin_top"
+                android:hint="@string/notes"
+                android:inputType="textMultiLine"
+                android:selectAllOnFocus="false"
+                android:text="" />
 
-            <TextView
-                android:id="@+id/movieDetailsMovieTriviaText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/movieDetails_triviatext"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/movieDetailsMovieTriviaHeader"
-                app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieTriviaHeader"
-                app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieTriviaHeader" />
         </LinearLayout>
 
 
@@ -173,20 +162,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsReleaseYear"
         tools:srcCompat="@tools:sample/avatars" />
-
-    <EditText
-        android:id="@+id/movieDetailsNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/notes"
-        android:inputType="text"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/movieDetailsMovieStatus"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

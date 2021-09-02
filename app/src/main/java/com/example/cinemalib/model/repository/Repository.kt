@@ -8,4 +8,6 @@ interface Repository {
     fun getMovieCardFromServer(movie_id: Int): MovieCard
     fun getAllHistory() : List<MovieCard>
     fun saveEntity(movieCard: MovieCard)
+    fun getNoteEntity(movie_id: Int) : String
+    fun isEntityExists(movie_id: Int) : Boolean
 }

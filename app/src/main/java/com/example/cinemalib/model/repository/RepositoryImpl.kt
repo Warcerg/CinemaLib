@@ -53,16 +53,38 @@ class RepositoryImpl : Repository {
         Database.db.historyDao().insert(convertMovieCardToEntity(movieCard))
     }
 
-    private fun convertHistoryEntityToMovieCard(entityList: List<HistoryEntity>):List<MovieCard> =
+    override fun getNoteEntity(movie_id: Int): String {
+        return Database.db.historyDao().getNoteDataByMovieId(movie_id)
+    }
+
+    override fun isEntityExists(movie_id: Int): Boolean {
+        return Database.db.historyDao().isEntityExist(movie_id)
+    }
+
+
+    private fun convertHistoryEntityToMovieCard(entityList: List<HistoryEntity>): List<MovieCard> =
         entityList.map {
-            MovieCard(it.movieId, it.title, it.budget, it.release_date,
+            MovieCard(
+                it.movieId, it.title, it.budget, it.release_date,
                 it.revenue, it.runtime, it.plot_overview, it.rating, it.status,
-                it.poster, it.adult, it.note  )
+                it.poster, it.adult, it.note
+            )
         }
 
     private fun convertMovieCardToEntity(movieCard: MovieCard): HistoryEntity =
-        HistoryEntity(movieCard.id,movieCard.title, movieCard.budget, movieCard.release_date,
-            movieCard.revenue, movieCard.runtime, movieCard.plot_overview, movieCard.rating, movieCard.status,
-            movieCard.poster, movieCard.adult, movieCard.note ?: "")
+        HistoryEntity(
+            movieCard.id,
+            movieCard.title,
+            movieCard.budget,
+            movieCard.release_date,
+            movieCard.revenue,
+            movieCard.runtime,
+            movieCard.plot_overview,
+            movieCard.rating,
+            movieCard.status,
+            movieCard.poster,
+            movieCard.adult,
+            movieCard.note
+        )
 
 }

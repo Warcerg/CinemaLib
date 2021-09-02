@@ -10,7 +10,13 @@ interface HistoryDao {
     fun all(): List<HistoryEntity>
 
     @Query("SELECT * FROM HistoryEntity WHERE movieID = :movieId")
-    fun getDataByMovieId(movieId: Int): List<HistoryEntity>
+    fun getDataByMovieId(movieId: Int): HistoryEntity
+
+    @Query("SELECT note FROM HistoryEntity WHERE movieID = :movieId")
+    fun getNoteDataByMovieId(movieId: Int): String
+
+    @Query("SELECT EXISTS (SELECT note FROM HistoryEntity WHERE movieID = :movieId)")
+    fun isEntityExist(movieId: Int): Boolean
 
     @Query("SELECT * FROM HistoryEntity WHERE adult = :adult")
     fun getNonAdultContent(adult: Boolean): List<HistoryEntity>

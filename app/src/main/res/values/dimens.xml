@@ -28,4 +28,5 @@
     <dimen name="movie_details_small_headings_text_size">16sp</dimen>
     <dimen name="movie_details_linear_layout_details">5dp</dimen>
     <dimen name="history_card_height">200dp</dimen>
+    <dimen name="editText_margin_top">20dp</dimen>
 </resources>

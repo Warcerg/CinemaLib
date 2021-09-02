@@ -12,7 +12,7 @@ class SettingsFragment : Fragment() {
     private var _binding: SettingsFragmentBinding? = null
     private val binding get() = _binding!!
     private var isAdultFilter: Boolean = false
-    private val IS_ADULT_FILTER = "ADULT_FILTER"
+
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -31,7 +31,7 @@ class SettingsFragment : Fragment() {
 
     private fun initData() {
         activity?.let {
-            isAdultFilter = it.getPreferences(Context.MODE_PRIVATE).getBoolean(IS_ADULT_FILTER, false)
+            isAdultFilter = it.getPreferences(Context.MODE_PRIVATE).getBoolean(ADULTFILTER, false)
         }
         with(binding){
             adultSwitch.isChecked = isAdultFilter
@@ -56,7 +56,7 @@ class SettingsFragment : Fragment() {
         activity?.let {
             val preferences = it.getPreferences(Context.MODE_PRIVATE)
             val editor = preferences.edit()
-            editor.putBoolean(IS_ADULT_FILTER, isAdultFilter)
+            editor.putBoolean(ADULTFILTER, isAdultFilter)
             editor.apply()
         }
     }
@@ -67,6 +67,8 @@ class SettingsFragment : Fragment() {
     }
 
     companion object{
+        const val ADULTFILTER = "ADULT_FILTER"
+
         fun newInstance() = SettingsFragment()
     }
 }

@@ -11,7 +11,7 @@ data class HistoryEntity(
   val release_date: String,
   val revenue: Int,
   val runtime: Int,
-  val plot_overview: String?,
+  val plot_overview: String,
   val rating: Double,
   val status: String,
   val poster: String,

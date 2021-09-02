@@ -9,9 +9,9 @@ import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MainFragmentBinding
 import com.example.cinemalib.framework.ui.details.MovieDetailsFragment
 import com.example.cinemalib.framework.ui.adapters.MovieListAdapter
+import com.example.cinemalib.framework.ui.settings.SettingsFragment
 import com.example.cinemalib.model.AppState
 import com.example.cinemalib.model.entities.Movie
-import com.example.cinemalib.snackbarShow
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,7 +25,7 @@ class MainFragment : Fragment() {
     private var adapterTopMoviesList: MovieListAdapter? = null
     private val NOWPLAYING = "now_playing"
     private val TOPRATED = "top_rated"
-    private val IS_ADULT_FILTER = "ADULT_FILTER"
+
 
     private var isAdultFilter: Boolean = false
 
@@ -55,7 +55,8 @@ class MainFragment : Fragment() {
 
     private fun loadData() {
         activity?.let {
-            isAdultFilter = it.getPreferences(Context.MODE_PRIVATE).getBoolean(IS_ADULT_FILTER, false)
+            isAdultFilter =
+                it.getPreferences(Context.MODE_PRIVATE).getBoolean(SettingsFragment.ADULTFILTER, false)
         }
     }
 
@@ -108,7 +109,7 @@ class MainFragment : Fragment() {
                 }
                 ).apply {
                     if (isAdultFilter) {
-                        setMovieList(appState.movieData[1].filter { !it.adult})
+                        setMovieList(appState.movieData[1].filter { !it.adult })
                     } else {
                         setMovieList(appState.movieData[1])
                     }
