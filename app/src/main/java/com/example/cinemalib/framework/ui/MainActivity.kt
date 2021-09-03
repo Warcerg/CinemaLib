@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.example.cinemalib.R
+import com.example.cinemalib.framework.ui.contacts.ContactsFragment
 import com.example.cinemalib.framework.ui.history.HistoryFragment
 import com.example.cinemalib.framework.ui.main.MainFragment
 import com.example.cinemalib.framework.ui.settings.SettingsFragment
@@ -53,6 +54,10 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.menu_settings -> {
                 openFragment(SettingsFragment.newInstance())
+                true
+            }
+            R.id.menu_contacts -> {
+                openFragment(ContactsFragment.newInstance())
                 true
             }
             else -> super.onOptionsItemSelected(item)

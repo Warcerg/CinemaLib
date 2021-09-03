@@ -37,5 +37,7 @@
     <string name="menu_history">History</string>
     <string name="settings_adult_filter">Adult filter</string>
     <string name="notes">Notes</string>
+    <string name="permission_for_reading_contacts_is_required">Permission for reading contacts is required</string>
+    <string name="menu_contacts">Contacts</string>
 
 </resources>
