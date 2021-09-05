@@ -39,5 +39,6 @@
     <string name="notes">Notes</string>
     <string name="permission_for_reading_contacts_is_required">Permission for reading contacts is required</string>
     <string name="menu_contacts">Contacts</string>
+    <string name="menu_map">Map</string>
 
 </resources>

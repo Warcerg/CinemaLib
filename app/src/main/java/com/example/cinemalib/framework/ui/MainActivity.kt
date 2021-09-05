@@ -11,6 +11,7 @@ import com.example.cinemalib.R
 import com.example.cinemalib.framework.ui.contacts.ContactsFragment
 import com.example.cinemalib.framework.ui.history.HistoryFragment
 import com.example.cinemalib.framework.ui.main.MainFragment
+import com.example.cinemalib.framework.ui.map.MapsFragment
 import com.example.cinemalib.framework.ui.settings.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
@@ -58,6 +59,10 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.menu_contacts -> {
                 openFragment(ContactsFragment.newInstance())
+                true
+            }
+            R.id.menu_map -> {
+                openFragment(MapsFragment.newInstance())
                 true
             }
             else -> super.onOptionsItemSelected(item)

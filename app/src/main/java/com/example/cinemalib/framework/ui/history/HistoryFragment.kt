@@ -73,7 +73,7 @@ class HistoryFragment : Fragment() {
     }
 
     companion object {
-        /*        @JvmStatic*/
+        @JvmStatic
         fun newInstance() = HistoryFragment()
     }
 
