@@ -29,4 +29,5 @@
     <dimen name="movie_details_linear_layout_details">5dp</dimen>
     <dimen name="history_card_height">200dp</dimen>
     <dimen name="editText_margin_top">20dp</dimen>
+    <dimen name="contacts_fragment_text_size">14sp</dimen>
 </resources>
