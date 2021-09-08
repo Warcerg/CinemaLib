@@ -1,7 +1,9 @@
 package com.example.cinemalib.model.received_data
 
+import com.example.cinemalib.model.received_data.recieved_entities.CastListDTO
 import com.example.cinemalib.model.received_data.recieved_entities.MovieDetailsDTO
 import com.example.cinemalib.model.received_data.recieved_entities.MovieListDTO
+import com.example.cinemalib.model.received_data.recieved_entities.PersonDTO
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -17,6 +19,16 @@ interface MovieDataAPI {
     fun getMovieCard(
         @Path("movieID") movieID: String
     ): Call<MovieDetailsDTO>
+
+    @GET("{movieID}/credits?api_key=${ApiUtils.APIKEY}")
+    fun getMovieCast(
+        @Path("movieID") movieID: String
+    ): Call<CastListDTO>
+
+    @GET("{personID}?api_key=${ApiUtils.APIKEY}")
+    fun getPersonDetails(
+        @Path("personID") personID: String
+    ): Call<PersonDTO>
 
 
 }

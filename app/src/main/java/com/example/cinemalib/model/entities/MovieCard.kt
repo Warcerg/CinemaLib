@@ -16,7 +16,8 @@ data class MovieCard(
     val status: String = "",
     val poster: String = "",
     val adult: Boolean = false,
-    var note: String = ""
+    var note: String = "",
+    var cast: List<CastEntity> = emptyList()
 ) : Parcelable {
 
     fun toMovie(): Movie{

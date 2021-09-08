@@ -2,6 +2,7 @@ package com.example.cinemalib.model.repository
 
 import com.example.cinemalib.model.database.Database
 import com.example.cinemalib.model.database.HistoryEntity
+import com.example.cinemalib.model.entities.CastEntity
 import com.example.cinemalib.model.entities.Movie
 import com.example.cinemalib.model.entities.MovieCard
 import com.example.cinemalib.model.received_data.MovieDataRepo
@@ -41,13 +42,38 @@ class RepositoryImpl : Repository {
             runtime = dto?.runtime ?: 0,
             status = dto?.status ?: "",
             poster = dto?.poster_path ?: "",
-            adult = dto?.adult ?: true
+            adult = dto?.adult ?: true,
+            cast = getMovieCast(movie_id)
         )
     }
 
+    override fun getMovieCast(movie_id: Int): List<CastEntity> {
+        val dto = MovieDataRepo.API.getMovieCast(movie_id.toString()).execute().body()
+        val castList = mutableListOf<CastEntity>()
+        if (dto?.cast != null){
+            for (cast in dto.cast){
+                castList.add(
+                    CastEntity(
+                        id = cast.id ?: 0,
+                        name = cast.name ?: "name",
+                        profilePath = cast.profilePath ?: "",
+                        character = cast.character ?: "character",
+                        /*placeOfBirth = getPlaceOfBirth(cast.id) ?: "Moscow"*/
+                    )
+                )
+            }
+        }
+        return castList.toList()
+    }
+
+    private fun getPlaceOfBirth(id: Int): String {
+        val dto = MovieDataRepo.APIperson.getPersonDetails(id.toString()).execute().body()
+        return dto?.placeOfBirth ?: ""
+    }
+
+
     override fun getAllHistory(): List<MovieCard> =
         convertHistoryEntityToMovieCard(Database.db.historyDao().all())
-
 
     override fun saveEntity(movieCard: MovieCard) {
         Database.db.historyDao().insert(convertMovieCardToEntity(movieCard))
@@ -67,7 +93,7 @@ class RepositoryImpl : Repository {
             MovieCard(
                 it.movieId, it.title, it.budget, it.release_date,
                 it.revenue, it.runtime, it.plot_overview, it.rating, it.status,
-                it.poster, it.adult, it.note
+                it.poster, it.adult, it.note, getMovieCast(it.movieId)
             )
         }
 

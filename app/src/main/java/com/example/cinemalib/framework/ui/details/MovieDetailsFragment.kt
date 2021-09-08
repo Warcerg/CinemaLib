@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.api.load
 import coil.size.Scale
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MovieDetailsFragmentBinding
+import com.example.cinemalib.framework.ui.adapters.CastListAdapter
 import com.example.cinemalib.model.AppState
+import com.example.cinemalib.model.entities.CastEntity
 import com.example.cinemalib.model.entities.Movie
 import com.example.cinemalib.model.entities.MovieCard
 import com.example.cinemalib.model.received_data.ApiUtils
@@ -23,6 +26,7 @@ class MovieDetailsFragment : Fragment(), CoroutineScope by MainScope() {
     private val binding get() = _binding!!
     private val viewModel: MovieDetailsViewModel by viewModel()
     private lateinit var movCard: MovieCard
+    private var adapter: CastListAdapter? = null
     private val yearSymbolCount = 4
 
     override fun onCreateView(
@@ -36,9 +40,11 @@ class MovieDetailsFragment : Fragment(), CoroutineScope by MainScope() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movie = arguments?.getParcelable<Movie>(BUNDLE_EXTRA)
-        movie?.let {
-            with(binding) {
+        with(binding) {
+            castRecyclerView.adapter = adapter
+            castRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            val movie = arguments?.getParcelable<Movie>(BUNDLE_EXTRA)
+            movie?.let {
                 viewModel.loadData(it.id)
                 viewModel.liveDataToObserve.observe(viewLifecycleOwner, { appState ->
                     when (appState) {
@@ -73,13 +79,23 @@ class MovieDetailsFragment : Fragment(), CoroutineScope by MainScope() {
                                     .plus(appState.movieCardData.revenue.toString())
                             movieDetailsMovieStatus.text =
                                 getString(R.string.movieDetails_status)
-                                    .plus(" \n")
+                                    .plus(" ")
                                     .plus(appState.movieCardData.status)
                             movieDetailsNote.setText(appState.movieCardData.note)
                             movCard = appState.movieCardData
+
+                            castRecyclerView.adapter = CastListAdapter(object : OnItemClickListener {
+                                override fun onItemViewClick(placeOfBirth: String) {
+                                    Toast.makeText(context,placeOfBirth,Toast.LENGTH_LONG).show()
+                                }
+
+                            }).apply {
+                                setData(appState.movieCardData.cast)
+                            }
                         }
                     }
                 })
+
 
             }
         }
@@ -106,5 +122,9 @@ class MovieDetailsFragment : Fragment(), CoroutineScope by MainScope() {
             fragment.arguments = bundle
             return fragment
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemViewClick(placeOfBirth: String)
     }
 }

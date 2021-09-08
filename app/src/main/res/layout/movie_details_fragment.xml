@@ -104,9 +104,12 @@
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/movie_details_mainpart_margin_top"
+        app:layout_constraintBottom_toTopOf="@+id/cast_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/movieDetailsPosterImage"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieRating">
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieRating"
+        app:layout_constraintVertical_bias="0.006">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -140,9 +143,9 @@
             <EditText
                 android:id="@+id/movieDetailsNote"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
+                android:layout_height="127dp"
                 android:layout_marginTop="@dimen/editText_margin_top"
+                android:ems="10"
                 android:hint="@string/notes"
                 android:inputType="textMultiLine"
                 android:selectAllOnFocus="false"
@@ -162,5 +165,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsReleaseYear"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cast_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/movieDetailsMovieStatus"
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsMovieStatus"
+        tools:listitem="@layout/cast_recycler_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

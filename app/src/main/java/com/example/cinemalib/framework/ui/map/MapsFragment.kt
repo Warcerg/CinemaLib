@@ -1,7 +1,6 @@
 package com.example.cinemalib.framework.ui.map
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.pm.PackageManager
 import androidx.fragment.app.Fragment
 
@@ -11,7 +10,6 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.view.*
 import android.view.Menu
-import android.view.View.inflate
 import androidx.core.app.ActivityCompat
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MapFragmentBinding
@@ -48,9 +46,9 @@ class MapsFragment : Fragment(), CoroutineScope by MainScope() {
         ){
             map.isMyLocationEnabled = true
         }
-        val intitialPlace = LatLng(44.952117, 34.102417)
+        val initialPlace = LatLng(44.952117, 34.102417)
         val marker = googleMap.addMarker(
-            MarkerOptions().position(intitialPlace).title("Start")
+            MarkerOptions().position(initialPlace).title("Start")
         )
     }
 
