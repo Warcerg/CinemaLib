@@ -12,8 +12,8 @@ import coil.size.Scale
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MovieDetailsFragmentBinding
 import com.example.cinemalib.framework.ui.adapters.CastListAdapter
+import com.example.cinemalib.framework.ui.map.MapsFragment
 import com.example.cinemalib.model.AppState
-import com.example.cinemalib.model.entities.CastEntity
 import com.example.cinemalib.model.entities.Movie
 import com.example.cinemalib.model.entities.MovieCard
 import com.example.cinemalib.model.received_data.ApiUtils
@@ -49,7 +49,7 @@ class MovieDetailsFragment : Fragment(), CoroutineScope by MainScope() {
                 viewModel.liveDataToObserve.observe(viewLifecycleOwner, { appState ->
                     when (appState) {
                         is AppState.Error -> {
-                            Toast.makeText(context, "error", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, resources.getString(R.string.error), Toast.LENGTH_LONG).show()
                         }
                         is AppState.SuccessMovieCard -> {
                             movieDetailsMovieTitle.text = appState.movieCardData.title
@@ -79,14 +79,25 @@ class MovieDetailsFragment : Fragment(), CoroutineScope by MainScope() {
                                     .plus(appState.movieCardData.revenue.toString())
                             movieDetailsMovieStatus.text =
                                 getString(R.string.movieDetails_status)
-                                    .plus(" ")
+                                    .plus(" \n")
                                     .plus(appState.movieCardData.status)
                             movieDetailsNote.setText(appState.movieCardData.note)
                             movCard = appState.movieCardData
 
+
                             castRecyclerView.adapter = CastListAdapter(object : OnItemClickListener {
-                                override fun onItemViewClick(placeOfBirth: String) {
-                                    Toast.makeText(context,placeOfBirth,Toast.LENGTH_LONG).show()
+                                override fun onItemViewClick(person_id: Int) {
+                                    val managerFR = activity?.supportFragmentManager
+                                    managerFR?.let { manager ->
+                                        val bundle = Bundle().apply {
+                                            putInt(MapsFragment.BUNDLE_EXTRA, person_id)
+                                        }
+                                        manager.beginTransaction()
+                                            .add(R.id.container, MapsFragment.newInstance(bundle))
+                                            .addToBackStack("")
+                                            .remove(this@MovieDetailsFragment)
+                                            .commitAllowingStateLoss()
+                                    }
                                 }
 
                             }).apply {
@@ -125,6 +136,6 @@ class MovieDetailsFragment : Fragment(), CoroutineScope by MainScope() {
     }
 
     interface OnItemClickListener {
-        fun onItemViewClick(placeOfBirth: String)
+        fun onItemViewClick(person_id: Int)
     }
 }

@@ -53,7 +53,7 @@ class CastListAdapter(private var itemClickListener: MovieDetailsFragment.OnItem
                 }
                 castName.text = data.name
                 characterName.text = data.character
-                root.setOnClickListener { itemClickListener.onItemViewClick(data.placeOfBirth) }
+                root.setOnClickListener { itemClickListener.onItemViewClick(data.id) }
             }
         }
     }

@@ -9,6 +9,5 @@ data class CastEntity(
     val name: String = "",
     val profilePath: String = "",
     val character: String = "",
-    val placeOfBirth: String = ""
 ) : Parcelable {
 }

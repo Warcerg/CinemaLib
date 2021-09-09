@@ -12,4 +12,5 @@ interface Repository {
     fun getNoteEntity(movie_id: Int) : String
     fun isEntityExists(movie_id: Int) : Boolean
     fun getMovieCast(movie_id: Int) : List<CastEntity>
+    fun getPlaceOfBirth(person_id: Int): String
 }

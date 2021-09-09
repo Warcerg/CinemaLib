@@ -5,7 +5,8 @@ import com.example.cinemalib.model.database.HistoryEntity
 import com.example.cinemalib.model.entities.CastEntity
 import com.example.cinemalib.model.entities.Movie
 import com.example.cinemalib.model.entities.MovieCard
-import com.example.cinemalib.model.received_data.MovieDataRepo
+import com.example.cinemalib.model.received_data.movie_data.MovieDataRepo
+import com.example.cinemalib.model.received_data.person_data.PersonDataRepo
 
 
 class RepositoryImpl : Repository {
@@ -55,10 +56,9 @@ class RepositoryImpl : Repository {
                 castList.add(
                     CastEntity(
                         id = cast.id ?: 0,
-                        name = cast.name ?: "name",
+                        name = cast.name ?: "",
                         profilePath = cast.profilePath ?: "",
-                        character = cast.character ?: "character",
-                        /*placeOfBirth = getPlaceOfBirth(cast.id) ?: "Moscow"*/
+                        character = cast.character ?: "",
                     )
                 )
             }
@@ -66,8 +66,8 @@ class RepositoryImpl : Repository {
         return castList.toList()
     }
 
-    private fun getPlaceOfBirth(id: Int): String {
-        val dto = MovieDataRepo.APIperson.getPersonDetails(id.toString()).execute().body()
+    override fun getPlaceOfBirth(person_id: Int): String {
+        val dto = PersonDataRepo.API.getPersonDetails(person_id.toString()).execute().body()
         return dto?.placeOfBirth ?: ""
     }
 

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import coil.size.Precision
 import coil.size.Scale
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MovieListRecyclerFragmentBinding

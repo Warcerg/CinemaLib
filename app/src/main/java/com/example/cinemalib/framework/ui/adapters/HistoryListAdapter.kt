@@ -8,7 +8,6 @@ import coil.api.load
 import coil.size.Scale
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.HistoryRecyclerFragmentBinding
-import com.example.cinemalib.databinding.MovieListRecyclerFragmentBinding
 import com.example.cinemalib.framework.ui.history.HistoryFragment
 import com.example.cinemalib.model.entities.MovieCard
 import com.example.cinemalib.model.received_data.ApiUtils

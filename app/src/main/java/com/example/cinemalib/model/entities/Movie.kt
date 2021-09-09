@@ -2,8 +2,6 @@ package com.example.cinemalib.model.entities
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.text.SimpleDateFormat
-import java.util.*
 
 @Parcelize
 data class Movie(
