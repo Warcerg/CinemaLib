@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
+import coil.size.Scale
 import com.example.cinemalib.R
 import com.example.cinemalib.databinding.MovieListRecyclerFragmentBinding
 import com.example.cinemalib.framework.ui.main.MainFragment
 import com.example.cinemalib.model.entities.Movie
+import com.example.cinemalib.model.received_data.ApiUtils
 
 
 class MovieListAdapter(private var itemClickListener: MainFragment.OnItemClickListener) :
@@ -43,7 +46,10 @@ class MovieListAdapter(private var itemClickListener: MainFragment.OnItemClickLi
             movieTitleText.text = movie.title
             movieReleaseDateText.text = movie.releaseDate
             movieRatingNumberText.text = movie.rating.toString()
-            moviePic.setImageResource(R.drawable.generic_movie_poster)
+            moviePic.load("${ApiUtils.posterUrl}${movie.poster}") {
+                scale(Scale.FIT)
+                placeholder(R.drawable.generic_movie_poster)
+            }
             root.setOnClickListener { itemClickListener.onItemViewClick(movie) }
         }
     }

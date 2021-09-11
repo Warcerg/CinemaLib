@@ -34,5 +34,13 @@
     <string name="movieDetails_synopsis_text">Overview text</string>
     <string name="movieDetails_gross_worldwide">Revenue: </string>
     <string name="movieDetails_minutes"> minutes </string>
+    <string name="menu_history">History</string>
+    <string name="settings_adult_filter">Adult filter</string>
+    <string name="notes">Notes</string>
+    <string name="permission_for_reading_contacts_is_required">Permission for reading contacts is required</string>
+    <string name="menu_contacts">Contacts</string>
+    <string name="menu_map">Map</string>
+    <string name="maps_search">Search</string>
+    <string name="maps_address_query">Enter_address</string>
 
 </resources>
