@@ -148,9 +148,11 @@ class MapsFragment : Fragment(), CoroutineScope by MainScope() {
     }
 
     private fun goToAddress(addresses: List<Address>, view: View, searchText: String) {
-        val location = LatLng(addresses[0].latitude, addresses[0].longitude)
+/*        val location = LatLng(addresses[0].latitude, addresses[0].longitude)*/
+        val location = addresses.firstOrNull()?.let { LatLng(it.latitude, it.longitude) }
         launch {
-            setMarker(location, searchText)
+/*            setMarker(location, searchText)*/
+            location?.let { setMarker(it, searchText) }
             map.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(
                     location,
