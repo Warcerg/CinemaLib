@@ -30,16 +30,4 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/menu_contacts"
-        android:icon="@drawable/ic_baseline_contacts_24"
-        android:orderInCategory="20"
-        android:title="@string/menu_contacts"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/menu_map"
-        android:icon="@android:drawable/ic_dialog_map"
-        android:title="@string/menu_map"
-        app:showAsAction="ifRoom" />
 </menu>

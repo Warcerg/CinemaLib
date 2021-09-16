@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "865235797578",
+    "project_id": "cinemalib-d84b6",
+    "storage_bucket": "cinemalib-d84b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865235797578:android:0ee9daf13cd7e085c9c8b3",
+        "android_client_info": {
+          "package_name": "com.example.cinemalib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865235797578-dbj19kj17e70o1rqr4fo5kn9lmmvdd7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnl3cVnkzAWJv-7HQgQV-16mUxvcfnFUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865235797578-dbj19kj17e70o1rqr4fo5kn9lmmvdd7p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
