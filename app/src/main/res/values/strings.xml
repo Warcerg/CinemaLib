@@ -42,5 +42,6 @@
     <string name="menu_map">Map</string>
     <string name="maps_search">Search</string>
     <string name="maps_address_query">Enter_address</string>
+    <string name="cast_available_in_paid_version_of_the_app">Cast available in paid version of the app</string>
 
 </resources>

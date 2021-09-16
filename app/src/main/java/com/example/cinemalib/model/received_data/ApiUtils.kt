@@ -1,5 +1,6 @@
 package com.example.cinemalib.model.received_data
 
+import com.example.cinemalib.BuildConfig
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
@@ -12,7 +13,8 @@ object ApiUtils {
     val baseUrl = "$baseUrlMainPart$baseUrlVersion$baseUrlReqType"
     val baseUrlPerson = "$baseUrlMainPart$baseUrlVersion$baseUrlReqTypePerson"
     val posterUrl = posterUrlMainPArt
-    const val APIKEY = "cb37ac22ea3216d2a5291d87e4c14152"
+
+    const val APIKEY = BuildConfig.MOVIEDB_API_KEY
 
     fun getOkHTTPBuilder(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()

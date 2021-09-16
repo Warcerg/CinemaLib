@@ -1,3 +1,5 @@
+
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
@@ -5,6 +7,11 @@ plugins {
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
 }
+
+def keystorePropertiesFile = rootProject.file("cinlibkey.properties");
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 
 android {
     compileSdk 30
@@ -19,10 +26,32 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file("cinlib_key.jks")
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keypassword']
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "TYPE", '"RELEASE"'
+        }
+        debug {
+            versionNameSuffix '-debug'
+            applicationIdSuffix ".debug"
+            buildConfigField "String", "TYPE", "DEBUG"
+        }
+        beta {
+            initWith debug
+            versionNameSuffix '-beta'
+            applicationIdSuffix ".beta"
+            buildConfigField "String", "TYPE", "BETA"
         }
     }
     compileOptions {
@@ -34,6 +63,25 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    flavorDimensions 'version'
+    productFlavors {
+        freeConfig {
+            dimension 'version'
+            versionNameSuffix '.free'
+        }
+        paidConfig {
+            dimension 'version'
+            versionNameSuffix '.paid'
+        }
+    }
+
+
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("apikey.properties").newDataInputStream())
+        def apiKey  = properties.getProperty("tmdb_api_key", "")
+        it.buildConfigField "String", "MOVIEDB_API_KEY", apiKey
     }
 }
 

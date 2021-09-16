@@ -88,7 +88,6 @@ class MapsFragment : Fragment(), CoroutineScope by MainScope() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.maps_menu, menu)
         this.menu = menu
-        menu.findItem(R.id.menu_map).isVisible = false
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
