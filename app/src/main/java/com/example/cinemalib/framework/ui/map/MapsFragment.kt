@@ -152,12 +152,16 @@ class MapsFragment : Fragment(), CoroutineScope by MainScope() {
         launch {
 /*            setMarker(location, searchText)*/
             location?.let { setMarker(it, searchText) }
-            map.moveCamera(
+            location?.let {
                 CameraUpdateFactory.newLatLngZoom(
-                    location,
+                    it,
                     15f
                 )
-            )
+            }?.let {
+                map.moveCamera(
+                    it
+                )
+            }
         }
     }
 

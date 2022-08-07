@@ -27,7 +27,8 @@
             android:layout_marginEnd="@dimen/main_fragment_recycler_view_movie_list_margin"
             android:layout_marginBottom="@dimen/main_fragment_recycler_view_movie_list_margin"
             android:orientation="horizontal"
-            tools:listitem="@layout/movie_list_recycler_fragment">
+            tools:listitem="@layout/movie_list_recycler_fragment"
+            tools:itemCount="5">
 
         </androidx.recyclerview.widget.RecyclerView>
 
