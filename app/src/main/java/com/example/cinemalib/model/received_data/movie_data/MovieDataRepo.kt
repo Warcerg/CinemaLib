@@ -15,5 +15,4 @@ object MovieDataRepo {
         adapter.create(MovieDataAPI::class.java)
     }
 
-
 }

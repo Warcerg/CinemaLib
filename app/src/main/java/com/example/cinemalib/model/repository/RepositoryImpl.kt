@@ -51,8 +51,8 @@ class RepositoryImpl : Repository {
     override fun getMovieCast(movie_id: Int): List<CastEntity> {
         val dto = MovieDataRepo.API.getMovieCast(movie_id.toString()).execute().body()
         val castList = mutableListOf<CastEntity>()
-        if (dto?.cast != null){
-            for (cast in dto.cast){
+        if (dto?.cast != null) {
+            for (cast in dto.cast) {
                 castList.add(
                     CastEntity(
                         id = cast.id ?: 0,
@@ -113,4 +113,81 @@ class RepositoryImpl : Repository {
             movieCard.note
         )
 
+    fun getNowPlayingMovieList(): Array<Movie> {
+        val dto = MovieDataRepo.API.getMovieList("now_playing").execute().body()
+        var movList = emptyArray<Movie>()
+        if (dto?.results != null) {
+            for (result in dto.results) {
+                movList +=
+                    Movie(
+                        title = result.title ?: "",
+                        releaseDate = result.release_date ?: "",
+                        rating = result.vote_average ?: 0.0,
+                        id = result.id ?: 0,
+                        poster = result.poster_path ?: "",
+                        adult = result.adult ?: true
+                    )
+
+            }
+        }
+        return movList
+    }
+
+    fun getTopRatedMovieList(): Array<Movie> {
+        val dto = MovieDataRepo.API.getMovieList("top_rated").execute().body()
+        var movList = emptyArray<Movie>()
+        if (dto?.results != null) {
+            for (result in dto.results) {
+                movList +=
+                    Movie(
+                        title = result.title ?: "",
+                        releaseDate = result.release_date ?: "",
+                        rating = result.vote_average ?: 0.0,
+                        id = result.id ?: 0,
+                        poster = result.poster_path ?: "",
+                        adult = result.adult ?: true
+                    )
+
+            }
+        }
+        return movList
+    }
+
+    fun getMovieArrayDataFromServer(queryMovieList: String): Array<Movie> {
+        val dto = MovieDataRepo.API.getMovieList(queryMovieList).execute().body()
+        val movList = mutableListOf<Movie>()
+        if (dto?.results != null) {
+            for (result in dto.results) {
+                movList.add(
+                    Movie(
+                        title = result.title ?: "",
+                        releaseDate = result.release_date ?: "",
+                        rating = result.vote_average ?: 0.0,
+                        id = result.id ?: 0,
+                        poster = result.poster_path ?: "",
+                        adult = result.adult ?: true
+                    )
+                )
+            }
+        }
+        return movList.toTypedArray()
+    }
+
+    fun getMovieCastN(movie_id: Int): List<CastEntity>? {
+        val dto = MovieDataRepo.API.getMovieCast(movie_id.toString()).execute().body()
+        val castList = mutableListOf<CastEntity>()
+        if (dto?.cast != null) {
+            for (cast in dto.cast) {
+                castList.add(
+                    CastEntity(
+                        id = cast.id ?: 0,
+                        name = cast.name ?: "",
+                        profilePath = cast.profilePath ?: "",
+                        character = cast.character ?: "",
+                    )
+                )
+            }
+        } else return null
+        return castList.toList()
+    }
 }
